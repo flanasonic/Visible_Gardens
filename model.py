@@ -13,7 +13,7 @@ def connect_to_db(app, db_name):
     # tells our app where to find the db
     app.config["SQLALCHEMY_DATABASE_URI"] = f'postgresql:///{db_name}'
     # prints our SQL commands to Python terminal, can shut off when needed
-    app.config["SQLALCHEMY_ECHO"] = True 
+    app.config["SQLALCHEMY_ECHO"] = False
     # need to include this line -set to False, otherwise it will waste memory
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False 
 
@@ -39,29 +39,45 @@ class Company(db.Model):
 
     id = db.Column(db.Integer,primary_key=True, autoincrement=True)
     trade_name = db.Column(db.String(50), nullable=False)
-    legal_name = db.Column(db.String(50), nullable=True)
-    website = db.Column(db.String(50), nullable=True)
-    founded = db.Column(db.Integer, nullable=True)
+    legal_name = db.Column(db.String(50))
+    website = db.Column(db.String(50))
+    year_founded = db.Column(db.Integer)
     country = db.Column(db.String(25), nullable=False)
-    state_incorporated = db.Column(db.String(2), nullable=True)
-    parent_company_id = db.Column(db.Integer, nullable=True)
-    child_company_id = db.Column(db.Integer, nullable=True)
-    legal_address_id = db.Column(db.Integer, db.ForeignKey('addresses.id'), nullable=True)
-    summary = db.Column(db.String(500), nullable=True)
-    total_employees = db.Column(db.Integer, nullable=True)
-    legal_form = db.Column(db.String(50), nullable=True,)
-    for_profit = db.Column(db.Boolean, default=True, nullable=True,)
-    business_focus = db.Column(db.String(75), nullable=True, default='specialty crop grower',)
+    state_incorporated = db.Column(db.String(2))
+    parent_company_id = db.Column(db.Integer)
+    child_company_id = db.Column(db.Integer)
+    legal_address_id = db.Column(db.Integer, db.ForeignKey('addresses.id'))
+    marketing_statement = db.Column(db.String(500))
+    total_employees = db.Column(db.Integer)
+    legal_form = db.Column(db.String(50))
+    for_profit = db.Column(db.Boolean, default=True)
+    ownership = db.Column(db.String(50))
+    business_focus = db.Column(db.String(75), default='specialty crop grower',)
+    # back_populates tells our sql model that if something changes in this model, it should change 
+    # that attribute in the other model
 
-# use db.relationship to set up SQLAlchemy relationships between companies and products tables
-# back_populates tells our sql model that if something changes in this model, it should change 
-# that attribute in the other model
-# not sure if this is correctly set up...   
-# one company has many products, but a product has only one company
-# so, we want to be able to call products.company ?????
-# (and also be able to call company.products) ?????
-   
+
+    # set up SQLAlchemy relationship between company and product classes
+    # a company has many products, a product has only one company
     products = db.relationship("Product", back_populates="company")
+
+    # set up relationship between company and address classes
+    # an address has one company, a company has many addresses
+    addresses = db.relationship("Address", back_populates="company")
+
+    # set up relationship between company and facility classes
+    # a company has many facilities, a facility has only one company
+    facilities = db.relationship("Facility", back_populates="company")
+
+    # so...we want to be able to call:
+    #   company.products and get all of the products associated with that company
+    #   company.addresses and get all of the addresses associated with that company
+    #   company.facilities and get all of the facilities associated with that company
+    #   ...and also...
+    #   product.company and get the company associated with that product
+    #   address.company and get the company associated with that address
+    #   facility.company and get the company associated with that facility
+    
 
     def __repr__(self):
         """Show info about company."""
@@ -76,20 +92,22 @@ class Product(db.Model):
     __tablename__ = 'products'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True,)
-    company_id = db.Column(db.Integer, db.ForeignKey('companies.id'), nullable=True)
+    company_id = db.Column(db.Integer, db.ForeignKey('companies.id'))
     name = db.Column(db.String(50), nullable=False)
-    category = db.Column(db.String(50), nullable=True)
-    user = db.Column(db.String(50), nullable=True, default='consumer')
-    distribution = db.Column(db.String(50), nullable=True)
-    description = db.Column(db.String(300), nullable=True)
-    key_words = db.Column(db.String(300), nullable=True)
+    category = db.Column(db.String(50))
+    user = db.Column(db.String(50), default='consumer')
+    description = db.Column(db.String(300))
+    key_words = db.Column(db.String(300))
+    distribution = db.Column(db.String(50))
     
-    # set up relationship between companies and products tables
-    # not sure if this is correctly set up...   
-    # one company has many products, a product can only have one company
-    # so, we want to be able to call company.products????
-    # (and also be able to call products.company)????
+    # set up relationship between company and product classes
+    # a company has many products, a product has one company
     company = db.relationship("Company", back_populates="products")
+
+    # so, we want to be able to call:
+    #   product.company and get the company associated with that product
+    #   company.products and get all of the products associated with that company
+
 
 
     def __repr__(self):
@@ -99,61 +117,86 @@ class Product(db.Model):
 
 
 
-
-class Facility(db.Model):
-
-    __tablename__ = 'facilities'
-
-    id = db.Column(db.Integer,
-                       primary_key=True,
-                       autoincrement=True, )
-    company_id = db.Column(db.Integer, db.ForeignKey('companies.id'), nullable=False)
-    name = db.Column(db.String(50), nullable=True)
-    type = db.Column(db.String(50), nullable=True)
-    output = db.Column(db.String(50), nullable=True)
-    opened = db.Column(db.Integer, nullable=True)
-    address_id = db.Column(db.Integer, db.ForeignKey('addresses.id'), nullable=True)
-    key_words = db.Column(db.String(300), nullable=True)
-    
-    def __repr__(self):
-        """Show info about facility."""
-
-        return f'<Facility id={self.id} name={self.name}>'
-
-
-
-
 class Address(db.Model):
 
     __tablename__ = 'addresses'
 
     id = db.Column(db.Integer,
                        primary_key=True,
-                       autoincrement=True, )
+                       autoincrement=True)
     company_id = db.Column(db.Integer, db.ForeignKey('companies.id'), nullable=False)
-    facility_id = db.Column(db.Integer, db.ForeignKey('facilities.id'), nullable=True)
-    type = db.Column(db.String(50), nullable=False)
+    facility_id = db.Column(db.Integer, db.ForeignKey('facilities.id'))
+    address_type = db.Column(db.String(50), nullable=False)
     address_1 = db.Column(db.String(50), nullable=False)
-    address_2 = db.Column(db.String(50), nullable=True)
-    suite = db.Column(db.String(25), nullable=True)
+    address_2 = db.Column(db.String(50))
+    suite = db.Column(db.String(25))
     city = db.Column(db.String(50), nullable=False)
     state = db.Column(db.String(2), nullable=False)
     zip = db.Column(db.String(10), nullable=False)
-    country= db.Column(db.String(50), nullable=True)
+    country= db.Column(db.String(50))
     
     def __repr__(self):
         """Show info about cat."""
 
+        return f'<Address id={self.id} name={self.company_id}>'
+
+    # set up relationship between address and facility classes
+    # an address has many facilities, a facility has one address  
+    company = db.relationship("Company", back_populates="addresses")
+
+    # set up relationship between address and company classes
+    # an address has one company, a company has many address  
+    facility = db.relationship("Facility", back_populates="addresses")
+
+    # so, we want to be able to call:
+    #   address.company and get the company associated with that address
+    #   company.addresses and get all addresses associated with that company
+    #   address.facilities and get all facilities associated with that address
+    #   facility.address and get the address associated with that facility
+
+
+
+class Facility(db.Model):
+
+    __tablename__ = 'facilities'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    company_id = db.Column(db.Integer, db.ForeignKey('companies.id'), nullable=False)
+    name = db.Column(db.String(50))
+    type = db.Column(db.String(50))
+    output = db.Column(db.String(50))
+    year_opened = db.Column(db.Integer)
+    address_id = db.Column(db.Integer, db.ForeignKey('addresses.id'))
+    employees = db.Column(db.Integer)
+    
+    def __repr__(self):
+        """Show info about facility."""
+
         return f'<Facility id={self.id} name={self.name}>'
+
+    # set up relationship between facility and company classes
+    # a facility has one company, a company has many facilities
+    company = db.relationship("Company", back_populates="facilities")
+
+    # set up relationship between facility and address classes
+    # a facility has one address, an address has many facilities
+    address = db.relationship("address", back_populates="facilities")
+
+    # so, we want to be able to call:
+    #   facility.company and get the company associated with that facility
+    #   company.facilities and get all facilities associated with that company
+    #   facility.address and get the address associates with that facility
+        #   address.facilities and get all facilities associated with that address
+
 
 
 
 ###########################
 
 # if __name__ == "__main__" is like saying "When you ran Python, if this 
-# script we're in now is the one you told python to run, then name will be 
+# script we're in now is the one you told Oython to run, then name will be 
 # equal to "__main__" 
-# (This is as opposed to running another script and just importing this one)
+# (as opposed to running another script and just importing this one)
 
 
 if __name__ == "__main__":
@@ -161,7 +204,6 @@ if __name__ == "__main__":
 
     # now call function connect_to_db() to connect our Flask app (called 'app')
     # to our database called 'indoorfarms' 
-
     db_name = 'indoorfarms'
     connect_to_db(app, db_name)
 
@@ -169,101 +211,32 @@ if __name__ == "__main__":
 
 ###########################
 
-    # now, let's create the tables usind the db connection we established above
-    # we only need to do this once 
-    # then again any time we need to recreate our tables (like if we make a 
-    # change in model.py that requires changing a table's schema)
-    # db.create_all()
+## now, let's create the tables using the db connection we established above
+## we only need to do this once 
+## then again any time we need to recreate our tables (like if we make a 
+## change in model.py that requires changing a table's schema)
+db.create_all()
 
 
 
 ###########################
 
 
-    ## CREATE SOME TEST RECORDS! 
-
-    ## create a 'company' test object
-    # company_id = db.Column(db.Integer, db.ForeignKey('companies.id'), nullable=False)
-    # name = db.Column(db.String(50), nullable=False)
-    # category = db.Column(db.String(50), nullable=True)
-    # user = db.Column(db.String(50), nullable=True, default='consumer')
-    # distribution = db.Column(db.String(50), nullable=True)
-    # description = db.Column(db.String(300), nullable=True)
-    # key_words = db.Column(db.String(300), nullable=True)
-    # print(new_company)
+## CREATE SOME TEST RECORDS! 
 
 
-    ## USE db.session! 
+## USE db.session! 
+# db.session.add(new_company)
+# db.session.add(new_product)
+# db.session.add(new_facility)
 
-    ## we use db.session for database transactions
-    ## it lets us store the modifications we plan to make to our db
-    ## the changes don't actually get made until we commit
-    ## we only have to use db.session.add() to add a new object once — 
-    ## we don’t need to keep adding it to the session each time we change it
-    # db.session.add(new_company)
-
-
-    ## COMMIT THE CHANGES!
-
-    # db.session.commit()
-
-
-    ## RUN SOME QUERIES!
-
-    # check_company_all = Company.query.all()
-    # print(check_company_all)
-
-    # check_company_get = Company.query.get(1)
-    # print(check_company_get)
-    
-    # check_company_filter_by = Company.query.filter_by(name='Gotham Greens').all()
-    # print(check_company_filter_by)
-
-    # check_company_filter = Company.query.filter(Company.name == 'Oishii').all()
-    # print(check_company_filter)
-
-    # check_company_filter_severalthings = Company.query.filter(Company.name == 'Oishii'. Company.user == 'consumer').all()
-    # print(check_company_filter_severalthings)
-
-
-###########################
-
-    ## FOR REFERENCE: Query Execution Methods/ Fetching Records
-
-    # .get()  
-    ## Get a record by its primary key
-
-    # .all() 
-    ## Get all records as a list
-
-    # .first() 
-    ## Get first record or 'None'
-
-    # .one() 
-    ## Get first record, error if 0 or more than 1
-
-    # .count()
-    ## Get number of records found without fetching
+## we use db.session for database transactions
+## it lets us store the modifications we plan to make to our db
+## the changes don't actually get made until we commit
+## we only have to use db.session.add() to add a new object once — 
+## we don’t need to keep adding it to the session each time we change it
 
 
 
-###########################
-
-    ## FOR REFERENCE: More Flexible Querying
-
-    ## simple version: 
-    # Employee.query.filter_by(name='Liz')
-    # Employee.query.filter(Employee.name == 'Liz')
-
-    ## more flexible version:
-    # db.session.query(Employee).filter_by(name='Liz')
-    # db.session.query(Employee).filter(Employee.name == 'Liz')
-
-###########################
-
-    ## FOR REFERENCE: Get by PK
-#     >>> Department.query.filter_by(dept_code='fin').one()
-# <Department code=fin name=Finance>
-# >>> Department.query.get('fin')
-# <Department code=fin name=Finance>
-
+## COMMIT THE CHANGES!
+# db.session.commit()
