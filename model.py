@@ -35,7 +35,7 @@ def connect_to_db(app, db_name):
 
 class Company(db.Model):
 
-    __tablename__ = 'companies'
+    __tablename__ = 'company'
 
     id = db.Column(db.Integer,primary_key=True, autoincrement=True)
     trade_name = db.Column(db.String(50), nullable=False)
@@ -46,7 +46,7 @@ class Company(db.Model):
     state_incorporated = db.Column(db.String(2))
     parent_company_id = db.Column(db.Integer)
     child_company_id = db.Column(db.Integer)
-    legal_address_id = db.Column(db.Integer, db.ForeignKey('addresses.id'))
+    legal_address_id = db.Column(db.Integer, db.ForeignKey('address.id'))
     marketing_statement = db.Column(db.String(500))
     total_employees = db.Column(db.Integer)
     legal_form = db.Column(db.String(50))
@@ -89,10 +89,10 @@ class Company(db.Model):
 
 class Product(db.Model):
 
-    __tablename__ = 'products'
+    __tablename__ = 'product'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True,)
-    company_id = db.Column(db.Integer, db.ForeignKey('companies.id'))
+    company_id = db.Column(db.Integer, db.ForeignKey('company.id'))
     name = db.Column(db.String(50), nullable=False)
     category = db.Column(db.String(50))
     user = db.Column(db.String(50), default='consumer')
@@ -119,13 +119,13 @@ class Product(db.Model):
 
 class Address(db.Model):
 
-    __tablename__ = 'addresses'
+    __tablename__ = 'address'
 
     id = db.Column(db.Integer,
                        primary_key=True,
                        autoincrement=True)
-    company_id = db.Column(db.Integer, db.ForeignKey('companies.id'), nullable=False)
-    facility_id = db.Column(db.Integer, db.ForeignKey('facilities.id'))
+    company_id = db.Column(db.Integer, db.ForeignKey('company.id'), nullable=False)
+    facility_id = db.Column(db.Integer, db.ForeignKey('facility.id'))
     address_type = db.Column(db.String(50), nullable=False)
     address_1 = db.Column(db.String(50), nullable=False)
     address_2 = db.Column(db.String(50))
@@ -146,7 +146,7 @@ class Address(db.Model):
 
     # set up relationship between address and company classes
     # an address has one company, a company has many address  
-    facility = db.relationship("Facility", back_populates="addresses")
+    facilities = db.relationship("Facility", back_populates="address")
 
     # so, we want to be able to call:
     #   address.company and get the company associated with that address
@@ -158,15 +158,15 @@ class Address(db.Model):
 
 class Facility(db.Model):
 
-    __tablename__ = 'facilities'
+    __tablename__ = 'facility'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    company_id = db.Column(db.Integer, db.ForeignKey('companies.id'), nullable=False)
+    company_id = db.Column(db.Integer, db.ForeignKey('company.id'), nullable=False)
     name = db.Column(db.String(50))
     type = db.Column(db.String(50))
     output = db.Column(db.String(50))
     year_opened = db.Column(db.Integer)
-    address_id = db.Column(db.Integer, db.ForeignKey('addresses.id'))
+    address_id = db.Column(db.Integer, db.ForeignKey('address.id'))
     employees = db.Column(db.Integer)
     
     def __repr__(self):
@@ -180,7 +180,7 @@ class Facility(db.Model):
 
     # set up relationship between facility and address classes
     # a facility has one address, an address has many facilities
-    address = db.relationship("address", back_populates="facilities")
+    address = db.relationship("Address", back_populates="facilities")
 
     # so, we want to be able to call:
     #   facility.company and get the company associated with that facility
