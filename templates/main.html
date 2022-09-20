@@ -1,0 +1,13 @@
+<table>
+    <tr>
+        <th>company name</th>
+        <th>statement</th>
+    </tr>
+{% for company in companies %}
+    <tr>
+        <td>{{ company.trade_name }}</td>
+        <td>{{ company.statement }}</td>
+    </tr>
+
+{% endfor %}
+</table>
