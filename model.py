@@ -31,6 +31,7 @@ class Company(db.Model):
    # https://docs.sqlalchemy.org/en/14/orm/declarative_tables.html#declarative-table-configuration
     __table_args__ = (
         db.ForeignKeyConstraint(
+            # local field   # foreign (table.column)
             ['address_id'], ['address.id'], name="fk_product_address"),
     )
 
@@ -60,7 +61,6 @@ class Address(db.Model):
     suite = db.Column(db.String(50))
     city = db.Column(db.String(50))
     state = db.Column(db.String(10))
-    # TODO: consider changing zip to db.Integer
     zip = db.Column(db.String(10))
     country = db.Column(db.String(50))
 
@@ -91,6 +91,7 @@ class Product(db.Model):
    # https://docs.sqlalchemy.org/en/14/orm/declarative_tables.html#declarative-table-configuration
     __table_args__ = (
         db.ForeignKeyConstraint(
+            # local field   # foreign (table.column)
             ['company_id'], ['company.id'], name="fk_product_company"),
     )
 
@@ -114,13 +115,14 @@ class Facility(db.Model):
     address_id = db.Column(db.Integer)
     facility_employees = db.Column(db.Integer)
 
-   # Declarative Table Configuration
+   # Declarative Table Configuration - SQLALchemy documentation: 
    # https://docs.sqlalchemy.org/en/14/orm/declarative_tables.html#declarative-table-configuration
     __table_args__ = (
         db.ForeignKeyConstraint(
             # local field   # foreign (table.column)
             ['address_id'], ['address.id'], name='fk_facility_address'),
         db.ForeignKeyConstraint(
+            # local field   # foreign (table.column)
             ['company_id'], ['company.id'], name='fk_facility_company')    )
 
     # set up relationship between Facility and Address classes
