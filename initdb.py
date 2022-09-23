@@ -26,8 +26,8 @@ GSHEET_ID = "1IXViZcOCmt5ZO-QJBKQ0HUjwna52Vnr6_WcMlQbpCp4"
 #  
 # these command line args let us refresh our local CSV files in the 
 # data folder with the contents of our google sheet document:
-#  $ python ./initdb.py --update all 
-#  $ python ./initdb.py --update [sheet name]
+#  $ python ./initdb.py -update all 
+#  $ python ./initdb.py -update [sheet name]
 #####################################################################
 
 sheet_names = [

@@ -1,37 +1,25 @@
-"company_id ","company_trade_name","name","category","user","description","key_words","distribution"
-"","AeroFarms","micro kale","Microgreens","consumer","sweet + wholesome
-Sweet and wholesome, our kale microgreens are tender mild & a versatile recipe staple.","NULL","NULL"
-"","AeroFarms","micro super mix","Microgreens","consumer","healthy personal salad
-A powerhouse blend of sweet kale, red cabbage, and juicy bok choy for a hearty personal salad.","NULL","NULL"
-"","AeroFarms","micro broccoli","Microgreens","consumer","mighty + balanced
-Mighty and balanced, our broccoli microgreens have  earthy notes & a slightly sweet finish.","NULL","NULL"
-"","AeroFarms","micro arugula","Microgreens","consumer","peppery + bright
-Peppery and bright, our arugula microgreens add a bold spice to any dish.","NULL","NULL"
-"","AeroFarms","micro wasabi mustard","Microgreens","consumer","hot + bold
-Hot and bold for an instant pop of heat.","NULL","NULL"
-"","AeroFarms","micro spicy mix","Microgreens","consumer","bold + zesty blend
-A bold and zesty blend of spicy mustard greens, peppery arugula & juicy bok choy for an instant pop of heat.","NULL","NULL"
-"","AeroFarms","micro rainbow mix","Microgreens","consumer","vibrant medley
-A vibrant medley of earthy cabbage, sweet kale & spicy mustard greens for a colorful boost for any dish.","NULL","NULL"
-"","AeroFarms","baby kale","Baby Greens","consumer","sweet + tender
-A crowd favorite, our perfectly tender Baby Kale is grown for peak sweetness with no bitter note whatsoever.","NULL","NULL"
-"","AeroFarms","baby super mix","Baby Greens","consumer","hearty power blend
-0ur baby super mix is a hearty power blend of sweet baby kale, zesty watercress and juicy bok choy.","NULL","NULL"
-"","AeroFarms","baby arugula","Baby Greens","consumer","perfectly peppery
-Tender + perfectly peppery with the right amount of bite.","NULL","NULL"
-"","AeroFarms","baby spicy mix","Baby Greens","consumer","bold + peppery medley
-Our baby spicy mix is a bold + peppery medley of spicy mustard greens, peppery arugula and juicy bok choy.","NULL","NULL"
-"","AeroFarms","baby watercress","Baby Greens","consumer","zesty powerhouse
-Zesty + bright baby greens with crunchy, juicy stems and a floral finish.","NULL","NULL"
-"","AeroFarms","baby bok choy","Baby Greens","consumer","juicier than spinach
-AeroFarms Baby Bok Choy, The New SpinachTM is reimagining how to create a better spinach experience that is juicier, more flavorful, and even more nutrient dense with an ANDI (Aggregate Nutrient Density Index) score of 865 vs. spinach at 707, and it can be enjoyed in just about any spinach recipe for an updated new take on the dish.","NULL","NULL"
-"","Bowery Farming","Arugula","Dark Leafy Greens","consumer","Velvety with a peppery bite, our Arugula adds a courageous spice to any dish. Try it plain or with olive oil and lemon to experience its flavor in the purest form.","NULL","NULL"
-"","Bowery Farming","Baby Butter","Lettuces","consumer","Velvety with a peppery bite, our Arugula adds a courageous spice to any dish. Try it plain or with olive oil and lemon to experience its flavor in the purest form.","NULL","NULL"
-"","Bowery Farming","Baby Kale","Dark Leafy Greens","consumer","Baby Kale is harvested before it reaches the full maturity of an adult kale plant, so it carries the hearty flavor of its full-grown counterpart while providing a sweeter finish. It’s delicate enough for salads and smoothies, but also sturdy enough to hold up in hot dishes.","NULL","NULL"
-"","Bowery Farming","Baby Kale Mix","Mixes","consumer","Baby Kale Mix cheers up any dish with hearty, sweet, and well-rounded flavor while boasting a range of colors.","NULL","NULL"
-"","Bowery Farming","Baby Romaine","Lettuces","consumer","Baby Romaine’s tender leaves brighten up any salad, but this green especially shines when paired with a creamy dressing.","NULL","NULL"
-"","Bowery Farming","Basil","Herbs","consumer","Sweet, aromatic and inviting—there is a reason this herb is so popular around the world.","NULL","NULL"
-"","Bowery Farming","Berries","Berries","consumer","Our berries are locally grown, available year-round, and unbelievably delicious. Now we’re not sure which one is better. It’s a problem we’re not complaining about.
+"company_id ","company_trade_name","name","category","company_categorized_as","user","description","key_words","distribution"
+"","AeroFarms","baby spicy mix","baby greens","Baby Greens","consumer","bold + peppery medley
+Our baby spicy mix is a bold + peppery medley of spicy mustard greens, peppery arugula and juicy bok choy.","""baby greens"", ""salad mixes"", ""salad greens""","NULL"
+"","AeroFarms","baby super mix","baby greens","Baby Greens","consumer","hearty power blend
+0ur baby super mix is a hearty power blend of sweet baby kale, zesty watercress and juicy bok choy.","""baby greens"", ""salad mixes"", ""salad greens""","NULL"
+"","AeroFarms","baby bok choy","baby greens","Baby Greens","consumer","juicier than spinach
+AeroFarms Baby Bok Choy, The New Spinach is reimagining how to create a better spinach experience that is juicier, more flavorful, and even more nutrient dense with an ANDI (Aggregate Nutrient Density Index) score of 865 vs. spinach at 707, and it can be enjoyed in just about any spinach recipe for an updated new take on the dish.","""baby greens"", ""salad greens""","NULL"
+"","AeroFarms","baby arugula","baby greens","Baby Greens","consumer","perfectly peppery
+Tender + perfectly peppery with the right amount of bite.","""baby greens"", ""salad greens""","NULL"
+"","AeroFarms","baby kale","baby greens","Baby Greens","consumer","sweet + tender
+A crowd favorite, our perfectly tender Baby Kale is grown for peak sweetness with no bitter note whatsoever.","""baby greens"", ""salad greens"", ""dark leafy greens""","NULL"
+"","AeroFarms","baby watercress","baby greens","Baby Greens","consumer","zesty powerhouse
+Zesty + bright baby greens with crunchy, juicy stems and a floral finish.","""baby greens"", ""salad greens""","NULL"
+"","BrightFarms","BrightFarms BABY BUTTER","baby greens","","consumer","Our Baby Butter is the softer and sweeter version of butterhead lettuce. Buttery soft and perfectly bite size – what’s not to love!","""baby greens"", ""salad greens""","NULL"
+"","BrightFarms","BrightFarms BUTTER CRISP","baby greens","","consumer","Our Baby Butter with a Crunch!","""salad greens""","NULL"
+"","BrightFarms","BrightFarms MIGHTY ROMAINE","baby greens","","consumer","Our Baby Romaine with a Crunch!","""salad greens""","NULL"
+"","BrightFarms","BrightFarms BABY SPINACH","baby greens","","consumer","Our Baby Spinach is so uniquely tender, you can taste the difference! It is as versatile as it is delicious. Try it in salads or as an ingredient in your favorite smoothie.","""baby greens"", ""salad greens""","NULL"
+"","Element Farms","Baby Spinach","baby greens","","consumer","tender & sweet
+our crown jewel and our reason for growing.
+Perfect for salads, sautées, & smoothies.","""baby greens"", ""salad greens""","NULL"
+"","BrightFarms","BrightFarms BABY ROMAINE","baby greens","","consumer","The crisp texture and delicate flavor of Baby Romaine goes great in your favorite sandwich or as a key ingredient in a Caesar salad.","""baby greens"", ""salad greens""","NULL"
+"","Bowery Farming","Berries","berries","Berries","consumer","Our berries are locally grown, available year-round, and unbelievably delicious. Now we're not sure which one is better. It’s a problem we're not complaining about.
 
 The Garden Berry
 The quintessential summer strawberry — full of juicy sweetness.
@@ -41,94 +29,76 @@ Light, delicate foods, whipped cream, simple arugula salads, and sipping rosé a
 The Wild Berry
 Nuanced, bright, and floral flavors make this berry a rollercoaster of flavor.
 PAIRS WELL WITH
-Dark, rich foods, hard cheddar and crackers, dark chocolate, sea salt, and flexing your culinary skills.","NULL","NULL"
-"","Bowery Farming","Chrysanthemum Greens","Farmer's Selection","consumer","From Caesar salads to hot pot, these baby lacy greens bring a subtly sweet, balanced bite to any dish. Try them in salads, as garnish, or in a beverage. Available for a limited-time.","NULL","NULL"
-"","Bowery Farming","Cilantro","Herbs","consumer","Also known as coriander, this citrusy, fragrant herb is a staple in many cuisines, often used to brighten flavors and counteract spices in dishes like curries and tacos.","NULL","NULL"
-"","Bowery Farming","Crispy Leaf","Lettuces","consumer","Invigorate your palate with our crunchiest green yet, Crispy Leaf. Its delightfully crisp center and frilly edges add texture and a refreshing finish to any dish you dream up.","NULL","NULL"
-"","Bowery Farming","Mixed Greens","Mixes","consumer","Subtly sweet, velvety texture, with the perfect amount of crunch—that’s the unmistakeable experience of Mixed Greens.","NULL","NULL"
-"","Bowery Farming","Mustard Frills","Farmer's Selection","consumer","Our debut small batch green with big-time flavor is back and bringing the heat!","NULL","NULL"
-"","Bowery Farming","Parsley","Herbs","consumer","Parsley is used to top dishes and enrich stews all around the world. The herb’s bright, refreshing flavor balances nicely with heavier dishes, making it a great garnish for meats and pastas.","NULL","NULL"
-"","Bowery Farming","Spring Mix","Mixes","consumer","Sweet, zesty and versatile. That’s what you get when red, green, and romaine lettuces meet mustard greens in this classic blend.","NULL","NULL"
-"","BrightFarms","SUNNY BACON Crunch Kit","Crunch Kits","consumer","This savory salad will have you beaming. This kit starts with fresh BrightFarms Sunny Crunch® greens topped with uncured bacon bits, shredded white cheddar cheese, sunflower seeds, crispy onions, herb croutons, and paired with a vegan Ranch dressing.","NULL","NULL"
-"","BrightFarms","CHICKPEA CAESAR Crunch KitTM","Crunch Kits","consumer","A delightful twist on a culinary classic. This kit starts with fresh BrightFarms Sunny Crunch® greens, topped with crispy chickpeas, organic quinoa, shaved parmesan, garlic crouton crumbles, and paired with a vegan Caesar dressing.","NULL","NULL"
-"","BrightFarms","BrightFarms SUNNY CRUNCH","NULL","consumer","It looks like a leafy green, but eats like iceberg. It’s light, crispy, crunchy, and perfect for kids!","NULL","NULL"
-"","BrightFarms","BrightFarms BABY SPINACH","NULL","consumer","Our Baby Spinach is so uniquely tender, you can taste the difference! It is as versatile as it is delicious. Try it in salads or as an ingredient in your favorite smoothie.","NULL","NULL"
-"","BrightFarms","BrightFarms SPRING MIX","NULL","consumer","This combination of soft baby greens and sweet tender lettuces creates a delightful mix of variety and textures.","NULL","NULL"
-"","BrightFarms","BrightFarms BABY BUTTER","NULL","consumer","Our Baby Butter is the softer and sweeter version of butterhead lettuce. Buttery soft and perfectly bite size – what’s not to love!","NULL","NULL"
-"","BrightFarms","BrightFarms BUTTER CRISP","NULL","consumer","Our Baby Butter with a Crunch!","NULL","NULL"
-"","BrightFarms","BrightFarms HARVEST CRUNCH","NULL","consumer","Harvest Crunch is a delightful duo of our crunchy red and green leaf lettuces. Like Sunny Crunch, with added crunchy red leaf for color and flavor!","NULL","NULL"
-"","BrightFarms","BrightFarms 50/50 SPRING AND SPINACH","NULL","consumer","This sweet and savory blend combines our Baby Spinach with a tasty selection of our unmistakably fresh, tender greens and lettuces.","NULL","NULL"
-"","BrightFarms","BrightFarms BABY ROMAINE","NULL","consumer","The crisp texture and delicate flavor of Baby Romaine goes great in your favorite sandwich or as a key ingredient in a Caesar salad.","NULL","NULL"
-"","BrightFarms","BrightFarms MIGHTY ROMAINE","NULL","consumer","Our Baby Romaine with a Crunch!","NULL","NULL"
-"","BrightFarms","BrightFarms NUTRIGREENS®","NULL","consumer","Supercharge your immune system with NutriGreens! A revolutionary new superfood lettuce naturally bursting with 2x the antioxidants of blueberries.","NULL","NULL"
-"","BrightFarms","BrightFarms BASIL","NULL","consumer","Fragrant and flavorful, our tender Basil just may be the best you’ve ever tried. It makes amazing pesto, adds lush flavor to a stir fry, and goes perfectly with fresh mozzarella, a drizzle of olive oil, and sliced tomatoes.","NULL","NULL"
-"","BrightFarms","Lef Farms Crisp","NULL","consumer","A fresh leaf lettuce with a bright flavor and crunchy bite. Crisp is a crunchy new alternative to traditional Romaine and Iceberg lettuce and combines a robust, crispy bite with a fresh, bright flavor — making it go perfectly with salads, sandwiches, and wraps.","NULL","NULL"
-"","BrightFarms","Lef Farms Fusion","NULL","consumer","A simple blend of soft and crunchy green and red baby lettuce. A delicious new mix that combines a unique flavor with a slightly crunchier texture profile you can’t find anywhere else. For those who want a little more punch than the classic Spring mix, this is it.","NULL","NULL"
-"","BrightFarms","Lef Farms Spice","NULL","consumer","A blend of Arugula, Mustard, Cressida, Mizuna, and Leaf Lettuce. When you want to shake up your arugula salad, your mizuna salad, or just your everyday salad with a little zip, reach for a zesty bag of Spice. Its palate-pleasing flavor and texture add a little complexity to your salads and wraps.","NULL","NULL"
-"","BrightFarms","Lef Farms Smooth","NULL","consumer","A blend of Leaf Lettuce, Pac Choi, Mizuna, and Oakleaf. Its name says it all. This buttery blend of crisp, sweet, and tender baby greens provides an ultra-smooth easygoing mix for salad connoisseurs who prefer to let the toppings or dressing bring the zest. Contains a delicious blend of tasty greens great for salads and wraps.","NULL","NULL"
-"","Element Farms","Baby Spinach","NULL","consumer","tender & sweet
-our crown jewel and our reason for growing.
-Perfect for salads, sautées, & smoothies.","NULL","NULL"
-"","Element Farms","Arugula & Spinach","NULL","consumer","peppery & sweet
-the ideal blend for our most popular greens
-Toss as a salad, heap onto a pizza, or wilt into pasta.","NULL","NULL"
-"","Element Farms","Spinach & Lettuce","NULL","consumer","tender & crispy
-Elevate your everyday salad with the perfect blend of our sweet baby spinach and crispy lettuce.","NULL","NULL"
-"","Element Farms","Arugula","NULL","consumer","","NULL","NULL"
-"","Element Farms","Crispy Lettuce","NULL","consumer","","NULL","NULL"
-"","Element Farms","Spinach & Shoots","NULL","consumer","","NULL","NULL"
-"","Element Farms","Spring Mix","NULL","consumer","","NULL","NULL"
-"","Element Farms","Mighty Mix","NULL","consumer","","NULL","NULL"
-"","Element Farms","Pea Shoots","NULL","consumer","","NULL","NULL"
-"","Element Farms","Sunflower Microgreens","NULL","consumer","","NULL","NULL"
-"","Element Farms","Crispy Lettuce","NULL","consumer","","NULL","NULL"
-"","Element Farms","Spring Mix","NULL","consumer","","NULL","NULL"
-"","Element Farms","Living Basil","NULL","consumer","","NULL","NULL"
-"","Farm.One","Greens Pack","weekly subscription","consumer","Our baby greens, micro greens, herbs & flowers
-Our freshly-harvested baby and micro greens, herbs and flowers selected from our range of 700 varieties.
+Dark, rich foods, hard cheddar and crackers, dark chocolate, sea salt, and flexing your culinary skills.","""berries"", ""strawberries"", ""fruit""","NULL"
+"","Oishii","Omakase Berries","berries","Berries","consumer","Our Omakase Berry is a unique Japanese variety characterized by its beautiful aroma, exceptional sweetness, signature seedless appearance, and creamy texture. A deep, sensory fruit experience long prized in Japanese food culture, but only now being discovered in America.","""berries"", ""strawberries"", ""fruit""","NULL"
+"","Bowery Farming","Baby Kale","dark leafy greens","Dark Leafy Greens","consumer","Baby Kale is harvested before it reaches the full maturity of an adult kale plant, so it carries the hearty flavor of its full-grown counterpart while providing a sweeter finish. It’s delicate enough for salads and smoothies, but also sturdy enough to hold up in hot dishes.","""baby greens"", ""salad greens"", ""dark leafy greens""","NULL"
+"","Bowery Farming","Arugula","dark leafy greens","Dark Leafy Greens","consumer","Velvety with a peppery bite, our Arugula adds a courageous spice to any dish. Try it plain or with olive oil and lemon to experience its flavor in the purest form.","""dark leafy greens"", ""salad greens""","NULL"
+"","Gotham Greens","Green Goddess","dressings","Dressings & Dips","consumer","Tangy, creamy and versatile, our Green Goddess dressing is perfect as a dip or tossed with greens.","""dressings""","NULL"
+"","Gotham Greens","Caesar","dressings","Dressings & Dips","consumer","","""dressings""","NULL"
+"","Gotham Greens","Vegan Caesar","dressings","Dressings & Dips","consumer","","""dressings""","NULL"
+"","Gotham Greens","Vegan Goddess","dressings","Dressings & Dips","consumer","","""dressings""","NULL"
+"","Gotham Greens","Vegan Lemon Basil","dressings","Dressings & Dips","consumer","","""dressings""","NULL"
+"","Gotham Greens","Vegan Ranch","dressings","Dressings & Dips","consumer","","""dressings""","NULL"
+"","Bowery Farming","Chrysanthemum Greens","Farmer's Selection","Farmer's Selection","consumer","From Caesar salads to hot pot, these baby lacy greens bring a subtly sweet, balanced bite to any dish. Try them in salads, as garnish, or in a beverage. Available for a limited-time.","""salad greens"", ""baby greens"", ""salad mixes""","NULL"
+"","Bowery Farming","Mustard Frills","Farmer's Selection","Farmer's Selection","consumer","Our debut small batch green with big-time flavor is back and bringing the heat!","""salad greens"", ""salad mixes""","NULL"
+"","Upward Farms","Hybrid Striped Bass","fish","mixes","consumer","A white freshwater fish grown free of antibiotics, hormones, and mercury, our hybrid striped bass have the perfect balance of light, flaky flesh with a meatiness and richness that will leave you satiated. If you're a fan of fish skin, our striped bass skin crisps nicely for a crunchy contrast to its tender flesh. ","""fish""","NULL"
+"","BrightFarms","BrightFarms BASIL","hebs","","consumer","Fragrant and flavorful, our tender Basil just may be the best you've ever tried. It makes amazing pesto, adds lush flavor to a stir fry, and goes perfectly with fresh mozzarella, a drizzle of olive oil, and sliced tomatoes.","""herbs""","NULL"
+"","Radicle Farm","Cilantro","herbs","Herbs","consumer","","""herbs""","NULL"
+"","Radicle Farm","Mint","herbs","Herbs","consumer","","""herbs""","NULL"
+"","Radicle Farm","Parsley","herbs","Herbs","consumer","","""herbs""","NULL"
+"","Radicle Farm","Rosemary","herbs","Herbs","consumer","","""herbs""","NULL"
+"","Radicle Farm","Thyme","herbs","Herbs","consumer","","""herbs""","NULL"
+"","Bowery Farming","Cilantro","herbs","Herbs","consumer","Also known as coriander, this citrusy, fragrant herb is a staple in many cuisines, often used to brighten flavors and counteract spices in dishes like curries and tacos.","""herbs""","NULL"
+"","Square Roots","Cilantro","herbs","Herbs","consumer","Aromatic. Clean. Peppery.","""herbs""","NULL"
+"","Square Roots","Dill","herbs","Herbs","consumer","Citrusy. Feathery. Mild.","""herbs""","NULL"
+"","Square Roots","Parsley","herbs","Herbs","consumer","Crisp. Airy. Subtle.
+Square Roots Parsley has an airy flavor that makes it the ideal garnish on almost every dish. Sprinkle it on fresh right before serving to top off your favorite meal.","""herbs""","NULL"
+"","Square Roots","Basil","herbs","Herbs","consumer","Fragrant. Sweet. Bright.
+Square Roots Basil can make a home in whatever you are cooking, from savory dishes to sweeter experiments. Used as a garnish or added during cooking, this green adds a burst of flavor to any dish.","""herbs""","NULL"
+"","Gotham Greens","Basil","herbs","Herbs","consumer","Our Genovese basil is a fragrant addition to salads and pastas.","""herbs""","NULL"
+"","Bowery Farming","Parsley","herbs","Herbs","consumer","Parsley is used to top dishes and enrich stews all around the world. The herb’s bright, refreshing flavor balances nicely with heavier dishes, making it a great garnish for meats and pastas.","""herbs""","NULL"
+"","Bowery Farming","Basil","herbs","Herbs","consumer","Sweet, aromatic and inviting—there is a reason this herb is so popular around the world.","""herbs""","NULL"
+"","Bowery Farming","Baby Romaine","lettuces","Lettuces","consumer","Baby Romaine’s tender leaves brighten up any salad, but this green especially shines when paired with a creamy dressing.","""baby greens""","NULL"
+"","Bowery Farming","Crispy Leaf","lettuces","Lettuces","consumer","Invigorate your palate with our crunchiest green yet, Crispy Leaf. Its delightfully crisp center and frilly edges add texture and a refreshing finish to any dish you dream up.","""salad greens""","NULL"
+"","Bowery Farming","Baby Butter","lettuces","Lettuces","consumer","Velvety with a peppery bite, our Arugula adds a courageous spice to any dish. Try it plain or with olive oil and lemon to experience its flavor in the purest form.","""baby greens"", ""salad greens""","NULL"
+"","AeroFarms","micro spicy mix","microgreens","Microgreens","consumer","bold + zesty blend
+A bold and zesty blend of spicy mustard greens, peppery arugula & juicy bok choy for an instant pop of heat.","""microgreens"", ""salad greens"", ""salad mixes"", ""spicy""","NULL"
+"","AeroFarms","micro super mix","microgreens","Microgreens","consumer","healthy personal salad
+A powerhouse blend of sweet kale, red cabbage, and juicy bok choy for a hearty personal salad.","""microgreens"", ""salad greens"", ""salad mixes""","NULL"
+"","AeroFarms","micro wasabi mustard","microgreens","Microgreens","consumer","hot + bold
+Hot and bold for an instant pop of heat.","""microgreens"", ""salad greens"", ""salad mixes"", ""spicy""","NULL"
+"","AeroFarms","micro broccoli","microgreens","Microgreens","consumer","mighty + balanced
+Mighty and balanced, our broccoli microgreens have  earthy notes & a slightly sweet finish.","""microgreens"", ""salad greens""","NULL"
+"","AeroFarms","micro arugula","microgreens","Microgreens","consumer","peppery + bright
+Peppery and bright, our arugula microgreens add a bold spice to any dish.","""microgreens"", ""salad greens"", ""dark leafy greens""","NULL"
+"","AeroFarms","micro kale","microgreens","Microgreens","consumer","sweet + wholesome
+Sweet and wholesome, our kale microgreens are tender mild & a versatile recipe staple.","""microgreens"", ""salad greens"", ""dark leafy greens""","NULL"
+"","AeroFarms","micro rainbow mix","microgreens","Microgreens","consumer","vibrant medley
+A vibrant medley of earthy cabbage, sweet kale & spicy mustard greens for a colorful boost for any dish.","""microgreens"", ""salad greens"", ""dark leafy greens""","NULL"
+"","Bowery Farming","Baby Kale Mix","mixes","Mixes","consumer","Baby Kale Mix cheers up any dish with hearty, sweet, and well-rounded flavor while boasting a range of colors.","""baby greens"", ""salad greens"", ""dark leafy greens""","NULL"
+"","Upward Farms","Mighty Microgreens Mix","mixes","mixes","consumer","Bright and hearty, this mix of broccoli, kale, and kohlrabi attracts even the pickiest eaters.","""microgreens"", ""salad greens"", ""dark leafy greens"", ""salad mixes""","NULL"
+"","Upward Farms","Spicy Microgreens Mix","mixes","mixes","consumer","Hot and sharp, this mix of mustard, kohlrabi, and radish has a clear-your-sinuses kick to it and will enhance the flavor of any meal.","""microgreens"", ""salad greens"", ""salad mixes"", ""spicy""","NULL"
+"","Bowery Farming","Mixed Greens","mixes","Mixes","consumer","Subtly sweet, velvety texture, with the perfect amount of crunch—that’s the unmistakable experience of Mixed Greens.","""salad greens"", ""salad mixes"", ""mixed greens"", ""sweet""","NULL"
+"","Bowery Farming","Spring Mix","mixes","Mixes","consumer","Sweet, zesty and versatile. That’s what you get when red, green, and romaine lettuces meet mustard greens in this classic blend.","""salad greens"", ""salad mixes"", ""mixed greens"", ""sweet""","NULL"
+"","Smallhold","Umami Mushroom Pack","mushrooms","mushrooms","consumer","Add depth to your meal with shiitakes, and sop up the flavor with our oysters.","""mushrooms""","NULL"
+"","Smallhold","Oyster Mushroom Pack","mushrooms","mushrooms","consumer","Contains our popular yellow and blue oyster mushrooms. One 8oz container will make a great stew.","""mushrooms""","NULL"
+"","Smallhold","Lions Mane Mushrooms","mushrooms","mushrooms","consumer","Flavor :
+Nutty, sweet and savory. 
 
-Grown in Brooklyn and TriBeCa with zero pesticides, harvested on the morning of the delivery. Our greens are packed in large, high-quality, reusable plastic boxes that easily fit in a normal apartment fridge.
+Texture:
+Soft and spongy.
 
-Choose a pack size that works for you - see below.
+Cooking Applications:
+Can be shredded, pressed into steaks, or thrown into soup, almost like dumplings. A great substitute for any recipe that calls for crab or lobster meat.","""mushrooms""","NULL"
+"","Smallhold","Blue Oyster Mushrooms","mushrooms","mushrooms","consumer","Flavor :
+Sweet and rich, mild umami.
 
-Each week the menu is curated to give you new crunch, flavor and a little something special.","NULL","direct to consumer"
-"","Gotham Greens","Arugula","Salad Greens","consumer","This zingy, peppery green is delicious with a light dressing, sautéed as a side or even as a pizza topping.","NULL","NULL"
-"","Gotham Greens","Butterhead","Salad Greens","consumer","Butterhead leaves (aka Boston or Bibb) are soft and sweet, with a buttery texture. Perfect for lettuce wraps or tacos.","NULL","NULL"
-"","Gotham Greens","Crispy Green Leaf","Salad Greens","consumer","","NULL","NULL"
-"","Gotham Greens","Grateful Greens","Salad Greens","consumer","","NULL","NULL"
-"","Gotham Greens","Greenhouse Crunch","Salad Greens","consumer","","NULL","NULL"
-"","Gotham Greens","Green Oak Leaf","Salad Greens","consumer","","NULL","NULL"
-"","Gotham Greens","Red Oak Leaf","Salad Greens","consumer","","NULL","NULL"
-"","Gotham Greens","Romaine","Salad Greens","consumer","","NULL","NULL"
-"","Gotham Greens","Tropicana Green Leaf","Salad Greens","consumer","","NULL","NULL"
-"","Gotham Greens","Baby Butterhead","Salad Greens","consumer","","NULL","NULL"
-"","Gotham Greens","Ugly Greens","Salad Greens","consumer","","NULL","NULL"
-"","Gotham Greens","Basil","Herbs","consumer","Our Genovese basil is a fragrant addition to salads and pastas.","NULL","NULL"
-"","Gotham Greens","Classic Pesto","Dressings & Dips","consumer","Our Classic Pesto is made with our own Genovese Basil, extra virgin olive oil, parmigiano and coarse sea salt.","NULL","NULL"
-"","Gotham Greens","Vegan Pesto","Dressings & Dips","consumer","","NULL","NULL"
-"","Gotham Greens","Spicy Pesto","Dressings & Dips","consumer","","NULL","NULL"
-"","Gotham Greens","Chimichurri","Dressings & Dips","consumer","Our Chimichurri combines fresh basil with jalapeños and parsley to create a delicious, time-saving marinade or sauce with a spicy kick.","NULL","NULL"
-"","Gotham Greens","Green Goddess","Dressings & Dips","consumer","Tangy, creamy and versatile, our Green Goddess dressing is perfect as a dip or tossed with greens.","NULL","NULL"
-"","Gotham Greens","Vegan Goddess","Dressings & Dips","consumer","","NULL","NULL"
-"","Gotham Greens","Vegan Ranch","Dressings & Dips","consumer","","NULL","NULL"
-"","Gotham Greens","Vegan Caesar","Dressings & Dips","consumer","","NULL","NULL"
-"","Gotham Greens","Caesar","Dressings & Dips","consumer","","NULL","NULL"
-"","Gotham Greens","Vegan Lemon Basil","Dressings & Dips","consumer","","NULL","NULL"
-"","Oishii","Omakase Berries","Berries","consumer","Our Omakase Berry is a unique Japanese variety characterized by its beautiful aroma, exceptional sweetness, signature seedless appearance, and creamy texture. A deep, sensory fruit experience long prized in Japanese food culture, but only now being discovered in America.","NULL","NULL"
-"","Radicle Farm","Rosemary","Herbs","consumer","-","NULL","NULL"
-"","Radicle Farm","Mint","Herbs","consumer","-","NULL","NULL"
-"","Radicle Farm","Parsley","Herbs","consumer","-","NULL","NULL"
-"","Radicle Farm","Cilantro","Herbs","consumer","-","NULL","NULL"
-"","Radicle Farm","Thyme","Herbs","consumer","-","NULL","NULL"
-"","Radicle Farm","Baby Arugula","Salad Greens","consumer","-","NULL","NULL"
-"","Radicle Farm","Baby Lettuces","Salad Greens","consumer","-","NULL","NULL"
-"","Radicle Farm","Baby Spinach","Salad Greens","consumer","-","NULL","NULL"
-"","Radicle Farm","Heirloom Mix","Salad Greens","consumer","-","NULL","NULL"
-"","Radicle Farm","Farmer's Mix","Salad Greens","consumer","-","NULL","NULL"
-"","Radicle Farm","Chef's Selection Salad Mix","Salad Greens","consumer","-","NULL","NULL"
-"","Radicle Farm","Summer Greens and herbs","Salad Greens","consumer","-","NULL","NULL"
-"","Radicle Farm","Baby Kale","Salad Greens","consumer","-","NULL","NULL"
-"","Smallhold","Trumpet Mushrooms","mushrooms","consumer","Flavor:
+Texture:
+Sturdy and absorbent, chewy in the best way
+
+Cooking Applications:
+Great in stir fries, fried rice, pasta sauces or with eggs for breakfast. Sauté, roast whole or grill ‘em. An excellent meat replacement given their texture and size.","""mushrooms""","NULL"
+"","Smallhold","Trumpet Mushrooms","mushrooms","mushrooms","consumer","Flavor:
 Buttery and sweet.
 
 Texture:
@@ -136,24 +106,8 @@ Thick, meaty stems, and pleasantly chewy.
 
 
 Cooking Applications:
-Slice lengthwise and grill or sauté, or slice into rounds and score with a criss cross pattern. Great for stuffings, pot-pies, and grilling.","NULL","NULL"
-"","Smallhold","Maitake Mushrooms","mushrooms","consumer","Flavor:
-Woody and tangy.
-
-Texture:
-Delicate and feathery.
-
-Cooking Applications:
-Great for stir fries, risottos, pizzas, mushrooms sauces, or seared on a skillet. When pressed, crisps very well. ","NULL","NULL"
-"","Smallhold","Lions Mane Mushrooms","mushrooms","consumer","Flavor :
-Nutty, sweet and savory. 
-
-Texture:
-Soft and spongy.
-
-Cooking Applications:
-Can be shredded, pressed into steaks, or thrown into soup, almost like dumplings. A great substitute for any recipe that calls for crab or lobster meat.","NULL","NULL"
-"","Smallhold","Yellow Oyster Mushrooms","mushrooms","consumer","Flavor:
+Slice lengthwise and grill or sauté, or slice into rounds and score with a criss cross pattern. Great for stuffings, pot-pies, and grilling.","""mushrooms""","NULL"
+"","Smallhold","Yellow Oyster Mushrooms","mushrooms","mushrooms","consumer","Flavor:
 Nutty, floral, lightly umami.
 
 Texture:
@@ -161,35 +115,79 @@ Tender and delicate with stems that have a snap.
 
 Cooking Applications:
 The caps crisp nicely when fried or roasted. Perfect for pasta dishes. Put them in almost everything for a ""hint"" of mushroom flavor.
-","NULL","NULL"
-"","Smallhold","Blue Oyster Mushrooms","mushrooms","consumer","Flavor :
-Sweet and rich, mild umami.
-
-Texture:
-Sturdy and absorbent, chewy in the best way
-
-Cooking Applications:
-Great in stir fries, fried rice, pasta sauces or with eggs for breakfast. Sauté, roast whole or grill ‘em. An excellent meat replacement given their texture and size.","NULL","NULL"
-"","Smallhold","Shiitake Mushrooms","mushrooms","consumer","Flavor:
-Strong savory and umami flavor, lightly smoky. 
+","""mushrooms""","NULL"
+"","Smallhold","Shiitake Mushrooms","mushrooms","mushrooms","consumer","Flavor:
+Strong savory and umami flavor, slightly smoky. 
 
 Texture:
 Caps have a soft, spongy quality and chewier stems. When cooked, texture ranges from delicate to meaty.
 
 Cooking Applications:
-Perfect for pot roasts, stir fries, soups, and infused into cocktails. ","NULL","NULL"
-"","Smallhold","Oyster Mushroom Pack","mushrooms","consumer","Contains our popular yellow and blue oyster mushrooms. One 8oz container will make a great stew.","NULL","NULL"
-"","Smallhold","Umami Mushroom Pack","mushrooms","consumer","Add depth to your meal with shiitakes, and sop up the flavor with our oysters.","NULL","NULL"
-"","Smallhold","Fancy Mushroom Pack","mushrooms","consumer","Sample the mushrooms we've been custom growing for chefs in Brooklyn.","NULL","NULL"
-"","Smallhold","Mushrooms in bulk.","mushrooms","consumer","If you’re interested in buying a large quantity of our mushrooms, reach out to us below!","NULL","NULL"
-"","Square Roots","Basil","Herbs","consumer","Fragrant. Sweet. Bright.
-Square Roots Basil can make a home in whatever you are cooking, from savory dishes to sweeter experiments. Used as a garnish or added during cooking, this green adds a burst of flavor to any dish.","NULL","NULL"
-"","Square Roots","Cilantro","Herbs","consumer","Aromatic. Clean. Peppery.","NULL","NULL"
-"","Square Roots","Dill","Herbs","consumer","Citrusy. Feathery. Mild.","NULL","NULL"
-"","Square Roots","Parsley","Herbs","consumer","Crisp. Airy. Subtle.
-Square Roots Parsley has an airy flavor that makes it the ideal garnish on almost every dish. Sprinkle it on fresh right before serving to top off your favorite meal.","NULL","NULL"
-"","Square Roots","Super Mix","Salads","consumer","Hearty. Leafy. Crunchy.","NULL","NULL"
-"","Square Roots","Spring Mix","Salads","consumer","Refreshing. Tender. Lively","NULL","NULL"
-"","Upward Farms","Mighty Microgreens Mix","mixes","consumer","Bright and hearty, this mix of broccoli, kale, and kohlrabi attracts even the pickiest eaters.","NULL","NULL"
-"","Upward Farms","Spicy Microgreens Mix","mixes","consumer","Hot and sharp, this mix of mustard, kohlrabi, and radish has a clear-your-sinuses kick to it and will enhance the flavor of any meal.","NULL","NULL"
-"","Upward Farms","Hybrid Striped Bass","mixes","consumer","A white freshwater fish grown free of antibiotics, hormones, and mercury, our hybrid striped bass have the perfect balance of light, flaky flesh with a meatiness and richness that will leave you satiated. If you’re a fan of fish skin, our striped bass skin crisps nicely for a crunchy contrast to its tender flesh. ","NULL","NULL"
+Perfect for pot roasts, stir fries, soups, and infused into cocktails. ","""mushrooms""","NULL"
+"","Smallhold","Maitake Mushrooms","mushrooms","mushrooms","consumer","Flavor:
+Woody and tangy.
+
+Texture:
+Delicate and feathery.
+
+Cooking Applications:
+Great for stir fries, risottos, pizzas, mushrooms sauces, or seared on a skillet. When pressed, crisps very well. ","""mushrooms""","NULL"
+"","Smallhold","Mushrooms in bulk.","mushrooms","mushrooms","consumer","If you're interested in buying a large quantity of our mushrooms, reach out to us below!","""mushrooms""","NULL"
+"","Smallhold","Fancy Mushroom Pack","mushrooms","mushrooms","consumer","Sample the mushrooms we've been custom growing for chefs in Brooklyn.","""mushrooms""","NULL"
+"","BrightFarms","Lef Farms Smooth","salad green mixes","","consumer","A blend of Leaf Lettuce, Pac Choi, Mizuna, and Oakleaf. Its name says it all. This buttery blend of crisp, sweet, and tender baby greens provides an ultra-smooth easygoing mix for salad connoisseurs who prefer to let the toppings or dressing bring the zest. Contains a delicious blend of tasty greens great for salads and wraps.","""salad greens"", ""salad mixes"", ""mixed greens"", ""sweet""","NULL"
+"","BrightFarms","Lef Farms Crisp","salad green mixes","","consumer","A fresh leaf lettuce with a bright flavor and crunchy bite. Crisp is a crunchy new alternative to traditional Romaine and Iceberg lettuce and combines a robust, crispy bite with a fresh, bright flavor — making it go perfectly with salads, sandwiches, and wraps.","""salad greens"", ""salad mixes"", ""mixed greens"", ""crunchy"", ""crisp""","NULL"
+"","BrightFarms","Lef Farms Fusion","salad green mixes","","consumer","A simple blend of soft and crunchy green and red baby lettuce. A delicious new mix that combines a unique flavor with a slightly crunchier texture profile you can't find anywhere else. For those who want a little more punch than the classic Spring mix, this is it.","""salad greens"", ""salad mixes"", ""mixed greens"", ""crunchy""","NULL"
+"","BrightFarms","BrightFarms HARVEST CRUNCH","salad green mixes","","consumer","Harvest Crunch is a delightful duo of our crunchy red and green leaf lettuces. Like Sunny Crunch, with added crunchy red leaf for color and flavor!","""salad greens"", ""salad mixes"", ""mixed greens"", ""crunchy""","NULL"
+"","Element Farms","Arugula & Spinach","salad green mixes","","consumer","peppery & sweet
+the ideal blend for our most popular greens
+Toss as a salad, heap onto a pizza, or wilt into pasta.","""salad greens"", ""salad mixes"", ""mixed greens"", ""peppery"", ""sweet""","NULL"
+"","Element Farms","Spinach & Lettuce","salad green mixes","","consumer","tender & crispy
+Elevate your everyday salad with the perfect blend of our sweet baby spinach and crispy lettuce.","""salad greens"", ""salad mixes"", ""mixed greens"", ""sweet"", ""baby greens"", ""spinach"", ""lettuce"", ""cripsy""","NULL"
+"","BrightFarms","BrightFarms SPRING MIX","salad green mixes","","consumer","This combination of soft baby greens and sweet tender lettuces creates a delightful mix of variety and textures.","""salad greens"", ""salad mixes"", ""mixed greens"", ""baby greens"", ""sweet""","NULL"
+"","BrightFarms","BrightFarms 50/50 SPRING AND SPINACH","salad green mixes","","consumer","This sweet and savory blend combines our Baby Spinach with a tasty selection of our unmistakably fresh, tender greens and lettuces.","""salad greens"", ""salad mixes"", ""mixed greens"", ""baby greens"", ""sweet"", ""savory"", ""spinach""","NULL"
+"","Radicle Farm","Baby Arugula","salad greens","Salad Greens","consumer","","""salad greens"", ""baby greens"", ""arugula""","NULL"
+"","Radicle Farm","Baby Kale","salad greens","Salad Greens","consumer","","""salad greens"", ""baby greens"", ""kale"", ""dark leafy greens""","NULL"
+"","Radicle Farm","Baby Lettuces","salad greens","Salad Greens","consumer","","""salad greens"", ""baby greens"", ""baby lettuces""","NULL"
+"","Radicle Farm","Baby Spinach","salad greens","Salad Greens","consumer","","""salad greens"", ""baby greens"", ""baby lettuces"", ""spinach"", ""baby spinach""","NULL"
+"","Radicle Farm","Chef's Selection Salad Mix","salad greens","Salad Greens","consumer","","""salad greens"", ""salad mixes"", ""mixed greens""","NULL"
+"","Radicle Farm","Farmer's Mix","salad greens","Salad Greens","consumer","","""salad greens"", ""salad mixes"", ""mixed greens""","NULL"
+"","Radicle Farm","Heirloom Mix","salad greens","Salad Greens","consumer","","""salad greens"", ""salad mixes"", ""mixed greens""","NULL"
+"","Radicle Farm","Summer Greens and herbs","salad greens","Salad Greens","consumer","","""salad greens"", ""salad mixes"", ""mixed greens"", ""herbs""","NULL"
+"","Gotham Greens","Butterhead","salad greens","Salad Greens","consumer","Butterhead leaves (aka Boston or Bibb) are soft and sweet, with a buttery texture. Perfect for lettuce wraps or tacos.","""salad greens"", ""butterheard"", ""Boston"", ""Bibb"", ""sweet"", ""buttery"", ""lettuce""","NULL"
+"","Gotham Greens","Arugula","salad greens","Salad Greens","consumer","This zingy, peppery green is delicious with a light dressing, sautéed as a side or even as a pizza topping.","""salad greens"", ""arugula"", ""spicy""","NULL"
+"","Gotham Greens","Baby Butterhead","salad greens","Salad Greens","consumer","","""salad greens"", ""baby greens"", ""butterheard"", ""Boston"", ""Bibb"", ""sweet"", ""buttery"", ""lettuce""","NULL"
+"","Gotham Greens","Crispy Green Leaf","salad greens","Salad Greens","consumer","","""salad greens"", ""crispy""","NULL"
+"","Gotham Greens","Grateful Greens","salad greens","Salad Greens","consumer","","""salad greens"", ""crispy"", ""green oak""","NULL"
+"","Gotham Greens","Green Oak Leaf","salad greens","Salad Greens","consumer","","""salad greens"", ""green oak leaf""","NULL"
+"","Gotham Greens","Greenhouse Crunch","salad greens","Salad Greens","consumer","","""salad greens"", ""crunch""","NULL"
+"","Gotham Greens","Red Oak Leaf","salad greens","Salad Greens","consumer","","""salad greens"", ""crunch"", ""read oak leaf""","NULL"
+"","Gotham Greens","Romaine","salad greens","Salad Greens","consumer","","""salad greens"", ""Romaine""","NULL"
+"","Gotham Greens","Tropicana Green Leaf","salad greens","Salad Greens","consumer","","""salad greens"", ""Tropicana Green Leaf""","NULL"
+"","Gotham Greens","Ugly Greens","salad greens","Salad Greens","consumer","","""salad greens"", ""Ugly Greens""","NULL"
+"","Square Roots","Super Mix","salad greens","Salads","consumer","Hearty. Leafy. Crunchy.","""salad greens"", ""mixed greens"", ""salad mixes""","NULL"
+"","BrightFarms","BrightFarms SUNNY CRUNCH","salad greens","","consumer","It looks like a leafy green, but eats like iceberg. It’s light, crispy, crunchy, and perfect for kids!","""salad greens"", ""crunch""","NULL"
+"","BrightFarms","BrightFarms NUTRIGREENS®","salad greens","","consumer","Supercharge your immune system with NutriGreens! A revolutionary new superfood lettuce naturally bursting with 2x the antioxidants of blueberries.","""salad greens"", ""antioxidants""","NULL"
+"","BrightFarms","Lef Farms Spice","salad greens mix","","consumer","A blend of Arugula, Mustard, Cressida, Mizuna, and Leaf Lettuce. When you want to shake up your arugula salad, your mizuna salad, or just your everyday salad with a little zip, reach for a zesty bag of Spice. Its palate-pleasing flavor and texture add a little complexity to your salads and wraps.","""salad greens"", ""mixed greens"", ""salad mixes"", ""spicy"", ""arugula""","NULL"
+"","BrightFarms","CHICKPEA CAESAR Crunch KitTM","salad kits","Crunch Kits","consumer","A delightful twist on a culinary classic. This kit starts with fresh BrightFarms Sunny Crunch® greens, topped with crispy chickpeas, organic quinoa, shaved parmesan, garlic crouton crumbles, and paired with a vegan Caesar dressing.","""salad kit""","NULL"
+"","BrightFarms","SUNNY BACON Crunch Kit","salad kits","Crunch Kits","consumer","This savory salad will have you beaming. This kit starts with fresh BrightFarms Sunny Crunch® greens topped with uncured bacon bits, shredded white cheddar cheese, sunflower seeds, crispy onions, herb croutons, and paired with a vegan Ranch dressing.","""salad kit""","NULL"
+"","Gotham Greens","Chimichurri","sauces","Dressings & Dips","consumer","Our Chimichurri combines fresh basil with jalapeños and parsley to create a delicious, time-saving marinade or sauce with a spicy kick.","""sauce""","NULL"
+"","Gotham Greens","Classic Pesto","sauces","Dressings & Dips","consumer","Our Classic Pesto is made with our own Genovese Basil, extra virgin olive oil, parmigiano and coarse sea salt.","""sauce""","NULL"
+"","Gotham Greens","Spicy Pesto","sauces","Dressings & Dips","consumer","","""sauce""","NULL"
+"","Gotham Greens","Vegan Pesto","sauces","Dressings & Dips","consumer","","""sauce""","NULL"
+"","Farm.One","Greens Pack","weekly subscription","weekly subscription","consumer","Our baby greens, micro greens, herbs & flowers
+Our freshly-harvested baby and micro greens, herbs and flowers selected from our range of 700 varieties.
+
+Grown in Brooklyn and TriBeCa with zero pesticides, harvested on the morning of the delivery. Our greens are packed in large, high-quality, reusable plastic boxes that easily fit in a normal apartment fridge.
+
+Choose a pack size that works for you - see below.
+
+Each week the menu is curated to give you new crunch, flavor and a little something special.","""salad greens""","direct to consumer"
+"","Square Roots","Spring Mix","","Salads","consumer","Refreshing. Tender. Lively","""salad greens"", ""salad mix"", ""mixed greens""","NULL"
+"","Element Farms","Arugula","","","consumer","","""salad greens"", ""arugula"", ""spicy""","NULL"
+"","Element Farms","Crispy Lettuce","","","consumer","","""salad greens"", ""lettuce"", ""crispy""","NULL"
+"","Element Farms","Living Basil","","","consumer","","""herbs""","NULL"
+"","Element Farms","Mighty Mix","","","consumer","","""salad greens"", ""salad mix"", ""mixed greens""","NULL"
+"","Element Farms","Pea Shoots","","","consumer","","""salad greens"", ""shoots""","NULL"
+"","Element Farms","Spinach & Shoots","","","consumer","","""salad greens"", ""shoots"", ""spinach""","NULL"
+"","Element Farms","Spring Mix","","","consumer","","""salad greens"", ""salad mix"", ""mixed greens""","NULL"
+"","Element Farms","Sunflower Microgreens","","","consumer","","""salad greens"", ""microgreens"", ""sunflower""","NULL"
