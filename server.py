@@ -1,6 +1,8 @@
 from model import db, Company
 from flask import Flask, render_template
 
+
+
 DB_URI = 'postgresql:///indoorfarms'
 # TODO: make a config for database URI
 
@@ -21,12 +23,26 @@ db.init_app(app)
 
 
 
-
-
-@app.get("/")
+# Views are functions that return a string (usually HTML)
+# Routes define the URL that will run a view function. 
+# They are declared by using decorators.
+# @app.route("/")
+# the GET method is implied by default in an HTML form
+#  @app.get("/")
 def get_main_page():
-    companies = Company.query.all()
-    return render_template('main.html', companies=companies)
+    return render_template('main.html')
+
+
+@app.get("/search")
+def get_search_form():
+    # companies = Company.query.all()
+    return render_template('/search.html')
+
+# @app.get("/results")
+# def get_search_results():
+#     companies = Company.query.all()
+#     return render_template('main.html', companies=companies)
+
 
 
 if __name__ == "__main__":
