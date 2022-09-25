@@ -1,15 +1,19 @@
 <!-- this is our base template -->
 
-<table>
-    <tr>
-        <th>company name</th>
-        <th>statement</th>
-    </tr>
-{% for company in companies %}
-    <tr>
-        <td>{{ company.trade_name }}</td>
-        <td>{{ company.statement }}</td>
-    </tr>
+<!doctype html>
+<html lang="en">
 
-{% endfor %}
-</table>
+<head>
+  <title>Visible Gardens</title>
+</head>
+
+<body>
+  <h1>
+    A search form will go on this page
+  </h1>
+  <a href="/search.html">click here to get to the search thing</a>
+  {% block content %}{% endblock %}
+</body>
+
+</html>
+
