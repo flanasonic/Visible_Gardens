@@ -48,12 +48,12 @@ args = vars(arg_parser.parse_args())
 
 if args.get('update', False):
     # the name we were given with the -update flag
-    # probably something like company or product
+    # probably something like 'company' or 'product'
     thing_name = args['update']
     print(
         f"We're going to update our {args['update']} data from google sheets")
 
-    # this make ssure we have a data dir and a backup dir
+    # this makes sure we have a data dir and a backup dir
     os.makedirs("./data/backup", exist_ok=True)
 
     if thing_name == "all":

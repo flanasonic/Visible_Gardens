@@ -1,4 +1,4 @@
-"company_trade_name","company_id ","nickname","is_farm","is_office","is_country_hq","is_other_type","year_opened","address_id","facility_employees"
+"company_trade_name","company_id","nickname","is_farm","is_office","is_country_hq","is_other_type","year_opened","address_id","facility_employees"
 "AeroFarms","","AeroFarms Danville, VA","yes","","","","","",""
 "AeroFarms","","AeroFarms HQ Newark, NJ","yes","yes","yes","","2016","",""
 "AeroFarms","","Midwest Farm","yes","","","","","",""

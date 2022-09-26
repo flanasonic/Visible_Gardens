@@ -1,0 +1,26 @@
+:root {
+    font-size: 16px;
+    font-family: sans-serif;
+}
+
+table {
+    padding: 3px;
+    border-spacing: .25em;
+}
+
+
+th,td {
+    padding-left: .5em;
+    padding-right: .5em;
+    padding-top: .25em;
+    padding-bottom: .25em;
+}
+
+th {
+    background-color: rgb(3, 67, 17);
+    color:rgb(215, 236, 219)
+}
+
+td {
+    background-color: rgb(173, 227, 185);
+}
