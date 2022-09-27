@@ -18,9 +18,22 @@ $ python ./initdb.py -update all sheets
 To download a specific sheet by name:
 $ python ./initdb.py -update [sheet name]
 
+*************************
+db_utils/__init__.py
+*************************
 
-2. 
+def download_google_worksheet
+
+def backup_data_file
 
 
+def get_matching_column_names
+ 
+ Function looks at columns in our spreadsheet vs. our table and finds the 
+ intersection, filtering out any spreadsheet columns that don't belong in 
+ the table.
 
-db_utils > __init__.py
+ def float_handler_with_nan_to_null
+
+
+ def na_to_null
