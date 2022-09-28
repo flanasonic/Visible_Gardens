@@ -1,23 +1,14 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
-<!-- this is our home page -->
+{% block title %} Cards {% endblock %}
 
 {% block content %}
-
-<form action="/search" method="GET">
-    <label for="search-terms">search by product, company, or keywords</label>
-    <input type="text" name="search" id="search-terms" />
-    <input type="submit" />
-</form>
-
-<table>
-    <tr>
-        <!-- <td><img src="/static/images/davies-designs-studio-MDZOGRtfuAg-unsplash.jpg"/>find products</td> -->
-        <td>find farms</td>
-        <td>find companies</td>
-    </tr>
-</table>
-
-
+<!-- js can can manipulate DOM elements, we'll use a div here so
+we can have our component render inside it -->
+<div id="container"></div> 
 {% endblock %}
-</table>
+
+{% block js %}
+<!-- this the js that can stick the things in the divs -->
+<script src="/static/js/visGardens.jsx" type="text/jsx"></script>
+{% endblock %}
