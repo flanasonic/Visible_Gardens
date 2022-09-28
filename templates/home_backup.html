@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+<!-- this is our home page -->
+
+{% block content %}
+
+<form action="/search" method="GET">
+    <label for="search-terms">search by product, company, or keywords</label>
+    <input type="text" name="search" id="search-terms" />
+    <input type="submit" />
+</form>
+
+<table>
+    <tr>
+        <!-- <td><img src="/static/images/davies-designs-studio-MDZOGRtfuAg-unsplash.jpg"/>find products</td> -->
+        <td>find farms</td>
+        <td>find companies</td>
+    </tr>
+</table>
+
+
+{% endblock %}
+</table>
