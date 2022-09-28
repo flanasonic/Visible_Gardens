@@ -5,13 +5,22 @@
   <head>
     <title>Visible Gardens</title>
     <link rel="stylesheet" href="/static/css/indoorfarms.css" />
-  </head>
+
+    <!-- load React dependencies here, so they are avaiable in case we need them 
+      in our other templates -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js" crossorigin></script>
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    </head>
 
   <body>
-  <h1>Welcome!</h1>
+  <!-- Include the page's content with this block. -->
+  {% block content %}
+  {% endblock %}
 
-  {% block content %}{% endblock %}
-
+  <!-- Include any page-specific JavaScript using this block. -->
+  {% block js %}
+  {% endblock %}
   </body>
 </html>
 
