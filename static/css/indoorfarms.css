@@ -16,7 +16,7 @@ th,td {
     padding-bottom: .25em;
 }
 
-th {
+thead td {
     background-color: rgb(3, 67, 17);
     color:rgb(215, 236, 219)
 }
