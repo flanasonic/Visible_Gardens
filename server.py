@@ -1,6 +1,7 @@
 from model import db, Company
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 from sqlalchemy import literal
+
 
 DB_URI = 'postgresql:///indoorfarms'
 # TODO: make a config for database URI
@@ -20,11 +21,12 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 # and tell the app to start running with db
 db.init_app(app)
 
+
+
 # Views are functions that return a string (usually HTML)
 # Routes define the URL that will run a view function.
 # They are declared by using decorators.
 # the GET method is implied by default in an HTML form
-
 
 @app.get("/")
 def get_main():
@@ -32,8 +34,25 @@ def get_main():
 
 # This gets called by our search form and will
 # show search results
+@app.get("/search.json")
+def get_results():
+    search_word = request.args['search'] 
+    companies = Company.query.filter(Company.trade_name
+                                     .contains(literal(search_word))
+                                     ).all()
+    result = []
+    for co in companies:
+        co_json = {
+            "id": co.id,
+            "trade_name": co.trade_name,
+            "country": co.country            
+        }
+        result.append(co_json)
+    return jsonify(result)
 
 
+# This gets called by our search form and will
+# show search results
 @app.get("/search")
 def get_search_results():
     search_word = request.args['search']
