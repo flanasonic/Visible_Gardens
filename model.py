@@ -6,8 +6,7 @@ db = SQLAlchemy()
 
 #####################################################################
 # Company
-# TODO: !!!!! make it so that each company has just one default address, I 
-# think this is the address_id we want to put in 'address_id'!!!!
+# a company is a legal entity
 
 #####################################################################
 
@@ -19,70 +18,42 @@ class Company(db.Model):
     trade_name = db.Column(db.String(50))
     legal_name = db.Column(db.String(50))
     website = db.Column(db.String(50))
-    address_id = db.Column(db.Integer) # default address?
     country = db.Column(db.String(50))
     parent_id = db.Column(db.Integer)
     year_founded = db.Column(db.Integer)
     statement = db.Column(db.String(1000))
-    total_employees = db.Column(db.Integer)
+    total_employees = db.Column(db.Integer) #TODO: fix bug, not getting stored as Int
     legal_form = db.Column(db.String(50))
     for_profit = db.Column(db.Boolean, default=True)
     ownership = db.Column(db.String(50))
     business_focus = db.Column(db.String(75), default='specialty crop grower')
    
-   # Declarative Table Configuration
-   # https://docs.sqlalchemy.org/en/14/orm/declarative_tables.html#declarative-table-configuration
-    __table_args__ = (
-        db.ForeignKeyConstraint(
-            # local field   # foreign (table.column)
-            # ['address_id'], ['address.id'], name="fk_product_address")
-            ['address_id'], ['address.id'], name="fk_company_address"),
-    )
 
-    # TODO: still not clear on how these work...
     # Company properties
-    #   - SQLAlchemy will fill these in with objects when querying
-    #   - We will populate these when "seeding" our database
-    #   - We will populate these when inserting/updating a Company from our flask services
-    address = db.relationship("Address")
-    products = db.relationship("Product")
-    facilities = db.relationship("Facility")
+    #  SQLAlchemy automatically fills these in with objects when querying
+    #  ut when we create new Company object, we need to put in this info in
+    # ourselvse. For example: new_company = db.Co....
+
+    # a company has many products
+    products = db.relationship("Product", back_populates="company")
+    # a company has many facilities
+    facilities = db.relationship("Facility", back_populates="company")
 
     def __repr__(self):
+        """Show info about company."""
+                                                                    # these are inside db.Model
         return " ".join( [f"({name}: {getattr(self, name)})" for name in self.__table__.columns.keys()] )
 
 
 #####################################################################
-# Address
-#####################################################################
+# Facility 
+# facility is a place/building/office/even PO Box
+# facility belongs to one company
+# facility needs to know the id of the company it belongs to
+# a facility has an address
 
-class Address(db.Model):
-
-    __tablename__ = 'address'
-
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    # company_id = db.Column(db.Integer) # TODO: do we need this?
-    # facility_id = db.Column(db.Integer) # TODO: do we need this?
-    make_default = db.Column(db.Boolean, default=False) # TODO: I think we need this?
-    # has_facility = db.Column(db.Boolean, default=False) # TODO: do we need this?
-    address_1 = db.Column(db.String(75))
-    address_2 = db.Column(db.String(75))
-    suite = db.Column(db.String(50))
-    city = db.Column(db.String(50))
-    state = db.Column(db.String(10))
-    postal = db.Column(db.String(10))
-    country = db.Column(db.String(50))
-
-    # Address properties
-    #   TODO: do we need to give Address a company property?
-    # company = db.relationship("Company")
-
-    def __repr__(self):
-        return " ".join( [f"({name}: {getattr(self, name)})" for name in self.__table__.columns.keys()] )
-
-
-#####################################################################
-# Facility
+# when there a many to one, the many side has to have the id 
+# when its one to one, just pick one to have the id
 #####################################################################
 
 class Facility(db.Model):
@@ -91,10 +62,10 @@ class Facility(db.Model):
     
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     company_id = db.Column(db.Integer)
+    address_id = db.Column(db.Integer)
     nickname = db.Column(db.String(75))
     type = db.Column(db.String(75))
     year_opened = db.Column(db.Integer)
-    address_id = db.Column(db.Integer)
     facility_employees = db.Column(db.Integer)
 
    # Declarative Table Configuration - SQLALchemy documentation: 
@@ -105,20 +76,48 @@ class Facility(db.Model):
             ['address_id'], ['address.id'], name='fk_facility_address'),
         db.ForeignKeyConstraint(
             # local field   # foreign (table.column)
-            ['company_id'], ['company.id'], name='fk_facility_company')    )
+            ['company_id'], ['company.id'], name='fk_facility_company')
+            )
 
-    # set up relationship between class Facility and class Address
     # a facility has one address, an address has many facilities
-    address = db.relationship("Address")
+    # a facility has one company, a company has many facilities
+    address = db.relationship("Address", back_populates="facilities") 
+    company = db.relationship("Company", back_populates="facilities")
 
     def __repr__(self):
         """Show info about facility."""
+        return " ".join( [f"({name}: {getattr(self, name)})" for name in self.__table__.columns.keys()] )
 
-        return f'<Facility id={self.id} name={self.name}>'
+
+#####################################################################
+# Address
+
+#####################################################################
+
+class Address(db.Model):
+
+    __tablename__ = 'address'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    address_1 = db.Column(db.String(75))
+    address_2 = db.Column(db.String(75))
+    suite = db.Column(db.String(50))
+    city = db.Column(db.String(50))
+    state = db.Column(db.String(10))
+    postal = db.Column(db.String(10))
+    country = db.Column(db.String(50))
+
+    # an address Address properties/relationships
+    facilities = db.relationship("Facility", back_populates="address")
+
+    def __repr__(self):
+        """Show info about address."""
+        return " ".join( [f"({name}: {getattr(self, name)})" for name in self.__table__.columns.keys()] )
 
 
 #####################################################################
 # Product
+
 #####################################################################
 
 class Product(db.Model):
@@ -134,14 +133,19 @@ class Product(db.Model):
     key_words = db.Column(db.String(1000))
     distribution = db.Column(db.String(50))
 
-    def __repr__(self):
-        return " ".join( [f"({name}: {getattr(self, name)})" for name in self.__table__.columns.keys()] )
-
    # Declarative Table Configuration
    # https://docs.sqlalchemy.org/en/14/orm/declarative_tables.html#declarative-table-configuration
     __table_args__ = (
         db.ForeignKeyConstraint(
             # local field   # foreign (table.column)
             ['company_id'], ['company.id'], name="fk_product_company"),
-    )
+            )
 
+    # Product properties/relationships
+    # a product belongs to one compant
+    company = db.relationship("Company", back_populates = "products")
+
+
+    def __repr__(self):
+        """Show info about product."""
+        return " ".join( [f"({name}: {getattr(self, name)})" for name in self.__table__.columns.keys()] )
