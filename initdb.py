@@ -155,59 +155,61 @@ def find_all_matching(join_column_name: str,
 # https://docs.sqlalchemy.org/en/14/core/engines.html
 engine = create_engine(DB_URI)
 
-# Note: instead of using os.system('dropdb ...') and ('createdb ...') 
-# we're using SQL Alchemy's metadata object here to drop our tables
+# We'll use SQL Alchemy's metadata object here to drop and create
+# our tables
+# https://docs.sqlalchemy.org/en/14/tutorial/metadata.html#tutorial-working-with-metadata
 print("Dropping tables!!!!!")
 db.metadata.drop_all(engine)  
 print("Creating tables!")
-db.metadata.create_all(engine)  # now create all tables
+db.metadata.create_all(engine)  
 
 
 #####################################################################
-# Code that reads our CSV data as pandas dataframes, so we can 
-# inserts the data into our database
-# pandas is helpful here because our data needs cleaning and because 
-# we'll have even greater need for it in the future when we build out
+# Code that reads our CSV as pandas dataframes
+# 
+# Pandas is helpful here because our data needs cleaning
+# We'll have even greater need for it in the future when we build out
 # our data model further and bring in geospatial data from an API
 #####################################################################
 
-# take each CSV file and load it into a pandas DataFrame
+# load our CSV files as pandas DataFrames
 df_company_sheet = pd.read_csv('./data/company.csv')
-# print(df_company_sheet)
-
 df_product_sheet = pd.read_csv('./data/product.csv')
-# print(df_product_sheet)
-
 df_address_sheet = pd.read_csv('./data/address.csv')
-# print(df_address_sheet)
-
 df_facility_sheet = pd.read_csv('./data/facility.csv')
-# print(df_facility_sheet)
+
 
 #####################################################################
 # Code that cleans our pandas dataframes 
-# Starts by making sure dtypes are compatible with our database tables
-# Then look for columns that appear in both our spreadsheet and tables
-# and filters out any that aren't common
+#
+# First, makes sure each field in each column conforms to a dtype 
+# that is compatible with the column type of our database table
+
 #####################################################################
 
-# Let's make sure each field in each column conforms to a dtype that
-# is compatible with the column type of our database table
-# Also apply pandas NA/NaN where we had blank cells in order to represent
-# NULL in our database table columns that are optional/nullable.
+
 df_company_sheet['for_profit'] = df_company_sheet['for_profit'].astype(bool)
 df_company_sheet['parent_id'] = df_company_sheet['parent_id'].astype("Int32")
 # df_company_sheet['total_employees'] = df_company_sheet['total_employees'].astype("Int32")
 # print(df_company_sheet)
 
-# Now, for each table, let's call our utility function 
-# 'get_matching_column_names' (defined in db_utils) to create a list 
-# of column names common to our spreadsheet and table, to filter 
-# out any that don't match
+
+# Also apply pandas NA/NaN where we had blank cells in order to represent
+# NULL in our database table columns that are optional/nullable.
+
+
+#####################################################################
+# Code that creates a list of columns common to our spreadsheet and tables
+#
+# It filters out any that aren't common
 # (We need to do this because we have extra columns in some sheets 
 # that can't go into our tables, plus some ID columns in tables that 
 # are not in our sheets.)
 
+
+#####################################################################
+
+# function 'get_matching_column_names' is defined in db_utils
 company_fields = get_matching_column_names(df_company_sheet, 'company', db)
 # print(f"matching fields for company: {company_fields}")
 # print("")
@@ -227,7 +229,7 @@ facility_fields = get_matching_column_names(df_facility_sheet, 'facility', db)
 
 #####################################################################
 # Code that populates our database with data from our clean pandas
-# dataframes 
+# DataFrames 
 #####################################################################
 
 # using SQLAlchemy's Session class here instead of flask sqlalchemy
@@ -302,6 +304,16 @@ with Session(engine) as session:
                                                 facility_fields,
                                                 Facility)
 
+        for facility in new_company.facilities:
+            facility.address = find_first_matching('nickname',
+                                                facility.nickname,
+                                                df_address_sheet,
+                                                address_fields,
+                                                Address)
+
+            
+
+
 # again, we are using SQLAlchemy's Session class, rather than Flask 
 # SQL Alchemy, so our session syntax is slightly different (we use 
 # the below instead of model.db.session.add_all(...) and 
@@ -314,8 +326,7 @@ with Session(engine) as session:
 # Code to individually drop/create a table in the database
 #####################################################################
 
-    # Leaving this here for reference - in case we want to load a csv 
-    # into a table individually...
+    # In case we want to load a csv into a table individually...
     # for address_row in df_address_sheet[address_fields].itertuples(index=False):
     #     # convert the row from the address sheet to a dict
     #     address_fields = address_row._asdict()

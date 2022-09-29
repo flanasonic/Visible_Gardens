@@ -1,4 +1,4 @@
-"company_id","company_trade_name","facility_nickname","make_default","has_facility","address_1","address_2","suite","city","state","postal","country"
+"company_id","company_trade_name","nickname","make_default","has_facility","address_1","address_2","suite","city","state","postal","country"
 "","AeroFarms","AeroFarms HQ Office - Newark","True","True","212 Rome Street","","","Newark","NJ","07105","USA"
 "","Bowery Farming","Headquarters","True","True","151 W 26TH ST","12TH FLOOR","","NEW YORK","NY","10001","USA"
 "","BrightFarms","Headquarters","True","True","One Bridge Street","","Suite 002-4","Irvington","NY","10533","USA"

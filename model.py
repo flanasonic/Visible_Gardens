@@ -6,7 +6,7 @@ db = SQLAlchemy()
 
 #####################################################################
 # Company
-# a company is a legal entity
+
 
 #####################################################################
 
@@ -39,21 +39,31 @@ class Company(db.Model):
     # a company has many facilities
     facilities = db.relationship("Facility", back_populates="company")
 
+    # TODO: trying to udnerstand db.relationship 
+    # apparently it returns a new property that does a few things...
+    # here, we tell it to point to the Facility class and load
+    # multiple of those??
+    # backref is a simple way to declare a new property on the Facility??
+    # class, it lets call .company on a Facility objext??
+    # facilities = db.relationship("Facility", backref="company")
+
     def __repr__(self):
-        """Show info about company."""
-                                                                    # these are inside db.Model
+        """Show info about company. """
+        # these are inside db.Model
         return " ".join( [f"({name}: {getattr(self, name)})" for name in self.__table__.columns.keys()] )
 
 
 #####################################################################
 # Facility 
-# facility is a place/building/office/even PO Box
-# facility belongs to one company
-# facility needs to know the id of the company it belongs to
+
+# a facility is a place/building/office/even a PO Box
+# a facility belongs to one company
+# a facility needs to know the id of the company it belongs to
 # a facility has an address
 
-# when there a many to one, the many side has to have the id 
-# when its one to one, just pick one to have the id
+# with a many to one relationship, the 'many' side needs to know (store)
+# the 'one' side's id 
+# with one to one, we can just pick which side stores the other's id
 #####################################################################
 
 class Facility(db.Model):

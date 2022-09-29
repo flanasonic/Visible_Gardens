@@ -9,18 +9,15 @@ DB_URI = 'postgresql:///indoorfarms'
 # create a Flask object and call it "app"
 app = Flask(__name__)
 
-# tells our app where to find the db
+# tell our app where to find the db
 app.config["SQLALCHEMY_DATABASE_URI"] = DB_URI
-# prints our SQL commands to Python terminal, can shut off when needed
+# print our SQL commands to Python terminal, shut off if needed
 app.config["SQLALCHEMY_ECHO"] = False
-# need to include this line -set to False, otherwise it will waste memory
+# include this line and set to False, otherwise it will waste memory
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
-# let's 'glue' our Flask app (named 'app') to our
-# Flask SQLAlchemy object (named 'db')
-# and tell the app to start running with db
+# let's 'glue' our Flask app (named 'app') to our Flask SQLAlchemy object (named 'db') and tell the app to start running with db
 db.init_app(app)
-
 
 
 # Views are functions that return a string (usually HTML)
