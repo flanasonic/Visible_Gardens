@@ -1,31 +1,100 @@
 from model import Company, Address, Product, Facility
 from server import app
+# from sqlalchemy.orm import Session #TODO: ok to add this??
+# from sqlalchemy import create_engine #TODO: ok to add this??
+
 
 app.app_context().push()
 
+
+
 ##############################################
-# RUN COMPANY QUERIES
+# COMPANY QUERIES
 ##############################################
 
-company_query_results = Company.query.all()
 
-for company in company_query_results:
-    print("    ---------------------------")
-    print(company)
+### using .get() to search by primary key ###
 
-print("  ---------------------------")
-# check_company_get = Company.query.get(7)
-# print(check_company_get)
+# company_get_by_id = Company.query.get(7)
+# print("  ---------------------------")
+# print(company_get_by_id)
+# print("  ---------------------------")
 
-# check_company_filter_by = Company.query.filter_by(trade_name='Gotham Greens').all()
-# print(check_company_filter_by)
 
-# check_company_filter = Company.query.filter(Company.trade_name == 'Oishii').all()
-# print(check_company_filter)
+### firing the select with .all() ###
 
-# check_company_filter_severalthings = Company.query.filter(Company.trade_name == 'Oishii', Company.product.user == 'consumer').all()
-# print(check_company_filter_severalthings)
+## fetch all company records
+# company_query = Company.query.all()
+# for company in company_query:
+#     print("    ---------------------------")
+#     print(company)
+# print("  ---------------------------")
 
+
+
+### firing the select with .first() ###
+# company_query = Company.query.first()
+# print("    ---------------------------")
+# print(company_query)
+# print("  ---------------------------")
+
+
+
+### FILTERING a few ways....###
+
+
+### using .filter_by() ###
+
+# company_results = Company.query.filter_by(trade_name = "Gotham Greens").all()
+# print("  ---------------------------")
+# print(company_filter_by)
+# print("  ---------------------------")
+
+
+### using .filter() ###
+
+# companies = Company.query.filter(Company.trade_name == "Gotham Greens").all()
+# for company in companies:
+#     print("  ---------------------------")
+#     print(company.products)
+#     print("  ---------------------------")
+
+
+# companies = Company.query.join(Product).filter(
+#     (Company.trade_name == "Oishii")
+#     & (Product.user == "consumer")
+#     ).all()
+# for company in companies:
+#     print("  ---------------------------")
+#     print(company.products)
+#     print("  ---------------------------")
+
+
+# for facility in Facility.query.all():
+#     print(facility.address)
+
+
+# for address in Address.query.all():
+#     print(address.facilities)
+
+
+
+
+### filter using .endswith() ###
+# complex_query = Company.query.filter(Company.trade_name.endswith('s')).all()
+# print(complex_query)
+
+
+### order_by ###
+# company_query_ordered = Company.query.order_by(Company.trade_name).all()
+# for company in company_query_ordered:
+#     print("    ---------------------------")
+#     print(company)
+# print("  ---------------------------")
+
+
+# products_by_company = Product.query.filter_by(company_trade_name = "Gotham Greens").all()
+# print(products_by_company)
 
 
 
