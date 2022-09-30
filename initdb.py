@@ -69,15 +69,19 @@ if args.get('update', False):
 # Functions for finding rows we need in csv files / worksheets
 #####################################################################
 
-def find_first_matching(join_column_name: str, # column name to look for a match
-                        join_column_value: str, # value to look for in that col
+
+def find_first_matching(join_column_value: str, # column value to look for 
                         df_to_search: pd.DataFrame, # daframe to look in
+                        join_column_name: str, # column name to look in
                         columns: List[str], # cols to use when creating a result
-                        _class: db.Model # model obj - call this constructor and return it
+                        _class: db.Model # class type of object to create
                         ):
+
+
     """
-    Given a company name, find the first matching record from the spreadsheet
-    where trade_name matches. Return a model object created from this record
+    Function takes in a value, a dataframe to search, the column name to search, 
+    and a lst of columns to return as a result and creates an object of type
+    specified  
     """
 
     # Use pandas DataFrame.query to find address records in the spreadsheet
@@ -92,37 +96,25 @@ def find_first_matching(join_column_name: str, # column name to look for a match
     else:
         print(f"   !!! !!! No {_class.__name__} found for {join_column_value} !!! !!!")
 
-# # TODO: this is a new function, need help..
-# def find_default_address(join_column_name: str, # column name to look for a match
-#                         join_column_value: str, # value to look for in that col
-#                         df_to_search: pd.DataFrame, # daframe to look in
-#                         columns: List[str], # cols to use when creating a result
-#                         _class: db.Model # model obj - call this constructor and return it
-#                         ):
-#     """
-#     Given a company name, find the first matching record from the spreadsheet
-#     where value in column make_default=True and trade_name matches. Return a model
-#     object created from this record
-#     """
-
-    # Use pandas DataFrame.query to find address records in the spreadsheet
-    # where the company trade name matches
-    # df_matching = df_to_search.query(f" {join_column_name} == '{join_column_value}' ")
-    # if df_matching.shape[0] >= 1:
-    #     # we found at least one matching row - we'll add the first one found where
-    #     # value in column 'make_default' = True
-    #     row = df_matching.iloc[0]
-    #     address_fields_dict = row[columns].to_dict()
-    #     return _class(**address_fields_dict)
-    # else:
-    #     print(f"   !!! !!! No {_class.__name__} found for {join_column_value} !!! !!!")
 
 
-def find_all_matching(join_column_name: str,
-                      join_column_value: str,
-                      df_to_search: pd.DataFrame,
-                      columns: List[str],
-                      _class: db.Model):
+# def find_all_matching(join_column_name: str,
+#                       join_column_value: str,
+#                       df_to_search: pd.DataFrame,
+#                       columns: List[str],
+#                       _class: db.Model
+#                       ):
+#
+
+
+def find_all_matching(join_column_value: str, #  value to look for 
+                        df_to_search: pd.DataFrame, # daframe to look for it in
+                        join_column_name: str, # column name to look in
+                        columns: List[str], # cols to use when creating a result
+                        _class: db.Model # class type of object to create
+                        ):
+
+
     """
     Given a company name, find products in the spreadsheet where the company_trade_name matches.
     Return a list of Product objects we can insert.
@@ -174,9 +166,9 @@ db.metadata.create_all(engine)
 
 # load our CSV files as pandas DataFrames
 df_company_sheet = pd.read_csv('./data/company.csv')
-df_product_sheet = pd.read_csv('./data/product.csv')
-df_address_sheet = pd.read_csv('./data/address.csv')
 df_facility_sheet = pd.read_csv('./data/facility.csv')
+df_address_sheet = pd.read_csv('./data/address.csv')
+df_product_sheet = pd.read_csv('./data/product.csv')
 
 
 #####################################################################
@@ -191,7 +183,6 @@ df_facility_sheet = pd.read_csv('./data/facility.csv')
 df_company_sheet['for_profit'] = df_company_sheet['for_profit'].astype(bool)
 df_company_sheet['parent_id'] = df_company_sheet['parent_id'].astype("Int32")
 # df_company_sheet['total_employees'] = df_company_sheet['total_employees'].astype("Int32")
-# print(df_company_sheet)
 
 
 # Also apply pandas NA/NaN where we had blank cells in order to represent
@@ -211,19 +202,10 @@ df_company_sheet['parent_id'] = df_company_sheet['parent_id'].astype("Int32")
 
 # function 'get_matching_column_names' is defined in db_utils
 company_fields = get_matching_column_names(df_company_sheet, 'company', db)
-# print(f"matching fields for company: {company_fields}")
-# print("")
-
+facility_fields = get_matching_column_names(df_facility_sheet, 'facility', db)
 address_fields = get_matching_column_names(df_address_sheet, 'address', db)
-# print(f"matching fields for address: {address_fields}")
-# print("")
-
 product_fields = get_matching_column_names(df_product_sheet, 'product', db)
 # print(f"matching fields for product: {product_fields}")
-# print("")
-
-facility_fields = get_matching_column_names(df_facility_sheet, 'facility', db)
-# print(f"matching fields for facility: {facility_fields}")
 # print("")
 
 
@@ -232,94 +214,71 @@ facility_fields = get_matching_column_names(df_facility_sheet, 'facility', db)
 # DataFrames 
 #####################################################################
 
-# using SQLAlchemy's Session class here instead of flask sqlalchemy
+# note - using the sqlachemy.orm Session class, so our session syntax 
+# is slightly different than that of flask sqlalchemy (we use the below 
+# instead of model.db.session.add_all(...) and model.db.session.commit() )
 with Session(engine) as session:
 
-    # Using just the columns we want from df_company_sheet, iterate 
-    # over each row and create a namedtuple from that row, which
-    # we'll store in variable 'company_row' 
+    # Taking just the columns we want from df_company_sheet, iterate 
+    # over each row and create from it a namedtuple
+    # Store that namedtuple in variable 'company_row' 
     # https://docs.python.org/3/library/collections.html#collections.namedtuple
     for company_row in df_company_sheet[company_fields].itertuples(index=False):
 
-        # now we use namedtuple's function _asdict() to convert each 
-        # company_row tuple we made above into a dict
+        # now use namedtuple's function _asdict() to convert each company_row 
+        # tuple into a dict
         # NOTE: each key in this dict will be the column name we used in our
         # gsheet and will go into our db table, the value is the val in each col
         # for that row
         company_fields = company_row._asdict()
         # print(f"print all company_fields dicts: {company_fields}")
         # print(" ")
-        # 
 
-        # here we are constructing a new Company object
+        # now let's construct a new Company object
         # because class Company extends SQLAlchemy Model (db.Model) it can take
-        # kwargs and we'll use the value of any key in the kwargs that matches a 
+        # kwargs 
+        # we'll use the value of any key in the kwargs that matches a 
         # Company atttribute as the value of that attribute
-
-        new_company = Company(**company_fields) # this unpacks the company field dict
-        print(new_company)
-        print(" ")
-
-        # relationships - adds address, products, facilities at once and
-        # makes sure they are all linked
-
-        # the code below uses function 'find_first_matching' (defined line 72)
-        # to populate a company object with an address
-        # It looks at 'df_address_sheet' in the 'company_trade_name' column
-        # for the given company name and takes the first address that matches
-        # Args go this order: 
-        #       join_column_name: str column name to look in for a match
-        #       join_column_value: str value to look for in that col
-        #       df_to_search: which daframe to look in
-        #       columns: list of cols (as string) to use when creating a result
-        #       _class: the class name of the object we want to create
-
-
-        # So, we're looking in these dataframes: df_product_sheet, 
-        # df_address_sheet, df_facility_sheet for a match in column 
-        # company_trade_name and facilities that match and insert them into our database 
-
-        # new_company.address = find_first_matching('company_trade_name', # look in this column
-        #                                           new_company.trade_name, # look for this value
-        #                                           df_address_sheet, # look in this dataframe
-        #                                           address_fields, # take these columns
-        #                                           Address) # make this class of object
-
-
-        # code below uses function 'find_all_matching' (see line 96) to 
-        # populate a company object with products - it looks in 
-        # in column 'company_trade_name' in 'df_product_sheet' for the given 
-        # company's trade_name and takes all products that match
-        new_company.products = find_all_matching('company_trade_name',
-                                                new_company.trade_name,
-                                                df_product_sheet,
-                                                product_fields,
-                                                Product)
-
-        # works same as the above, but searches for facilities 
-        # that match the given company name
-        new_company.facilities = find_all_matching('company_trade_name',
-                                                new_company.trade_name,
-                                                df_facility_sheet,
-                                                facility_fields,
-                                                Facility)
-
-        for facility in new_company.facilities:
-            facility.address = find_first_matching('nickname',
-                                                facility.nickname,
-                                                df_address_sheet,
-                                                address_fields,
-                                                Address)
-
-            
-
-
-# again, we are using SQLAlchemy's Session class, rather than Flask 
-# SQL Alchemy, so our session syntax is slightly different (we use 
-# the below instead of model.db.session.add_all(...) and 
-# model.db.session.commit()
+        new_company = Company(**company_fields) #  unpacks company_fields dict
+        # print("_____________________")
         # print(new_company)
-        # print(" ")
+        # print("_____________________")
+
+        # use function 'find_all_matching' (line 121) to populate the company
+        # object with products 
+        new_company.products = find_all_matching(new_company.trade_name, # value to search for
+                                                df_product_sheet, # df to look in
+                                                'company_trade_name', # col to look in
+                                                product_fields, # columns to take for result
+                                                Product) # create a Product object
+        # print("_____________________")
+        # print(new_company.products)
+        # print("_____________________")
+
+ 
+        # now populate the company object with facilities 
+        new_company.facilities = find_all_matching(new_company.trade_name, # value to search for
+                                                df_facility_sheet, # df to look in
+                                                'company_trade_name', # col to look in
+                                                facility_fields, # columns to take for result
+                                                Facility) # create a Facility object
+
+        # now populate each of the company's facilities with an address
+        for facility in new_company.facilities:
+            facility.address = find_first_matching(facility.nickname, # value to search for
+                                                df_address_sheet, # df to look in
+                                                'nickname', # col name to look in
+                                                address_fields, #  cols to take for result
+                                                Address) # object type to create
+            print("_____________________")
+            print(new_company.trade_name)
+            print(facility.address)
+            print("_____________________")
+
+        # now add new_company to the session
+        # print("  ---------------------------")
+        # print(new_company)
+        # print("  ---------------------------")
         session.add(new_company)
 
 #####################################################################

@@ -6,8 +6,6 @@ db = SQLAlchemy()
 
 #####################################################################
 # Company
-
-
 #####################################################################
 
 class Company(db.Model):
@@ -34,18 +32,11 @@ class Company(db.Model):
     #  ut when we create new Company object, we need to put in this info in
     # ourselvse. For example: new_company = db.Co....
 
-    # a company has many products
+    # a company has many products, a product has one company
+    # a company has many facilities, a facility has one company
     products = db.relationship("Product", back_populates="company")
-    # a company has many facilities
     facilities = db.relationship("Facility", back_populates="company")
 
-    # TODO: trying to udnerstand db.relationship 
-    # apparently it returns a new property that does a few things...
-    # here, we tell it to point to the Facility class and load
-    # multiple of those??
-    # backref is a simple way to declare a new property on the Facility??
-    # class, it lets call .company on a Facility objext??
-    # facilities = db.relationship("Facility", backref="company")
 
     def __repr__(self):
         """Show info about company. """
@@ -56,7 +47,6 @@ class Company(db.Model):
 #####################################################################
 # Facility 
 
-# a facility is a place/building/office/even a PO Box
 # a facility belongs to one company
 # a facility needs to know the id of the company it belongs to
 # a facility has an address
@@ -101,7 +91,6 @@ class Facility(db.Model):
 
 #####################################################################
 # Address
-
 #####################################################################
 
 class Address(db.Model):
@@ -127,7 +116,6 @@ class Address(db.Model):
 
 #####################################################################
 # Product
-
 #####################################################################
 
 class Product(db.Model):
