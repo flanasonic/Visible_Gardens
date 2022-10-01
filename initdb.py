@@ -51,7 +51,7 @@ if args.get('update', False):
     # probably something like 'company' or 'product'
     thing_name = args['update']
     # print(
-    #     f"We're going to update our {args['update']} data from google sheets")
+    # f"We're going to update our {args['update']} data from google sheets")
 
     # this makes sure we have a data dir and a backup dir
     os.makedirs("./data/backup", exist_ok=True)
@@ -124,7 +124,6 @@ def find_all_matching(join_column_value: str, #  value to look for
 
     if join_column_name not in df_to_search.columns.values:
         print(f"!!!!!!! {_class.__name__} : Join column not found!  Columns:")
-        # print(df_to_search.columns)
         return
 
     df_matching = df_to_search.query(f"{join_column_name} == '{join_column_value}'")
@@ -231,8 +230,6 @@ with Session(engine) as session:
         # gsheet and will go into our db table, the value is the val in each col
         # for that row
         company_fields = company_row._asdict()
-        # print(f"print all company_fields dicts: {company_fields}")
-        # print(" ")
 
         # now let's construct a new Company object
         # because class Company extends SQLAlchemy Model (db.Model) it can take
@@ -270,10 +267,10 @@ with Session(engine) as session:
                                                 'nickname', # col name to look in
                                                 address_fields, #  cols to take for result
                                                 Address) # object type to create
-            print("_____________________")
-            print(new_company.trade_name)
-            print(facility.address)
-            print("_____________________")
+            # print("_____________________")
+            # print(new_company.trade_name)
+            # print(facility.address)
+            # print("_____________________")
 
         # now add new_company to the session
         # print("  ---------------------------")
