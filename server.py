@@ -1,6 +1,7 @@
 from model import db, Company
 from flask import Flask, render_template, request, jsonify
 from sqlalchemy import literal
+from search import search_product_get_company
 
 
 DB_URI = 'postgresql:///indoorfarms'
@@ -31,18 +32,20 @@ def get_main():
 
 # This gets called by our search form and will
 # show search results
+# our queries are in search.py, we call them on this page
 @app.get("/search.json")
 def get_results():
-    search_word = request.args['search'] 
-    companies = Company.query.filter(Company.trade_name
-                                     .contains(literal(search_word))
-                                     ).all()
+    words = request.args['search'] 
+    companies = search_product_get_company(words)
     result = []
     for co in companies:
         co_json = {
             "id": co.id,
             "trade_name": co.trade_name,
-            "country": co.country            
+            "city": co.address.city,
+            "state": co.address.state,
+            "country": co.country,
+            "website": co.website       
         }
         result.append(co_json)
     return jsonify(result)
