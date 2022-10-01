@@ -148,8 +148,8 @@ app.app_context().push()
 # check_product_filter = Product.query.filter(Product.name == 'Power Greens').all()
 # print(check_product_filter)
 
-# check_product_filter_severalthings = Product.query.filter(Product.name == 'Power Greens', Product.user == 'consumer').all()
-# print(check_product_filter_severalthings)
+
+
 
 
 ## fetch all product records
@@ -214,24 +214,42 @@ app.app_context().push()
 # print(company_results)
 
 
-# join facility and address tables
-# filter by address state==NJ
-# for each faciliy, print its address
-# facilities = Facility.query.join(Address).filter(Address.state == "NJ").all()
-facilities = Facility.query.join(Address)
-facilities = facilities.filter(Address.state == "NJ")
-for facility in facilities:
-    print(facility.address.city)
+
+## write a query to search for companies with facilities of type "farm" located 
+## in a given city & state and get a list of the products they offer
+# facilities = Facility.query.join(Address).filter(Facility.type == "farm", Address.state == "NY", ).all()
+# for facility in facilities:
+#     print("  ---------------------------")
+#     print(f"Company: {facility.company.trade_name}")
+#     print(f"Farm(s) located in: {facility.address.city}, {facility.address.state}")
+#     print("Products: ")
+#     for product in facility.company.products:
+#         print(f"{product.name},")
+#     print("  ---------------------------")
 
 
-# # fetch all address records and print their facilities
-# addresses = Address.query.all()
-# for address in addresses:
-#     print(address.facilities)
+# write a query to search for a given company and get a list of its facilities
+# with the type and location (city, state) of each
+# TODO: Group lists by faciltiy type
+# companies = Company.query.join(Facility).filter(Company.trade_name == "Gotham Greens").all()
+# for company in companies:
+#     print(f"{company.trade_name} has the following facilities: ")
+#     for facility in company.facilities:
+#         print(f"A {facility.type} in {facility.address.city}, {facility.address.state}")
+# #     print(f"{target_co} has the following facilities: ")
+#     for facility in company.facilities:
+#         print(f" A {facility.type} in {facility.address.city}, {facility.address.state}.")
+# # for company in company_facilities:
+#     print(Company.facility)
+# # print(f"{target_co} has the following facilities: ")
+# for company in company_facilities:
+#     print(f"{company.facility.type}")
+#     print("  ---------------------------")
 
 
-# fetch all address recordes, filter by state,
-# and print their facilities
+
+# # fetch all address records, filter by state,
+# # and print their facilities
 # addresses = Address.query.filter_by(state = "NJ").all()
 # for address in addresses:
 #     print(address)
@@ -240,13 +258,35 @@ for facility in facilities:
 # find all companies with facilities in state NY 
 ## fetch company records, filter by:
 ## ...
-# companies = Company.query.join(Facility).filter(
-#     (Address.facilities.state == "NY")).all()
+# companies = Company.query.join(Facility, Address).filter(Address.facilities.state == "NY").all()
 # for company in companies:
 #     print("  ---------------------------")
-#     print(company.trade_name)
+#     print(company)
 #     print("  ---------------------------")
  
 
+
+## write a search to find companies with facilities in NY state growing "greens"
+# Company: 
+# get cols: trade_name, website, year_founded, statement
+# Facility: 
+# get cols: type, address
+# filter by: address.state = "NY"
+# Products: 
+# get cols: name, category, description
+# filter by: keyword = "greens"
+
+# join facility and address tables
+# filter by address state==NJ
+# for each faciliy, print its address
+# facilities = Facility.query.join(Address, Product).all()
+# facilities = Facility.query.join(Address).join(Product)
+# facilities = facilities.join(Product)
+# facilities_product = facilities.filter(Address.state == "NY").all()
+# for facility in facilities:
+#     print(facility.address.city)
+
+# companies = db.session.query(Company).all()
+# print(companies)
 
 
