@@ -1,4 +1,6 @@
 
+// components on this page ordered from smallest/finest to largest
+
 function SearchBox(props) {
     return (
         <form>
@@ -24,14 +26,24 @@ function TableRow(props) {
 }
 
 
+
+function CompanyCardContainer(props) {
+    return(
+
+    )
+    
+}
+
 // components take props
 function CompanyTable(props) {
     const rows = [];
 
     /* Make some TableRows to put in our table*/
+    // ... is the spread operator, it unpacks what's inside the company
+    // object
     if (props.data !== undefined && props.data.length) {
         for (let company of props.data) {
-            rows.push(<TableRow key={company.id} {...company} />)
+            rows.push(<TableRow key={company.id} {...company} />) 
         }
         /* Return a html table with  our rows in the middle */
         return (
@@ -56,8 +68,11 @@ function CompanyTable(props) {
 
 
 /* This is a component to contain all the Components we want on our page */
-function App(props) {
-    const [searchResults, setSearchResults] = React.useState({ companies: [] })
+// React.useState returns a tuple of some stuff - our state object {companies: []}
+// and setShellState -- changes the value of searchResults and lets component that
+// gets searchResults as its props know that it's changed
+function Shell(props) {
+    const [searchResults, setShellState] = React.useState({ companies: [] })
 
     /**
      * Function that makes a fetch call to our /search.json route
@@ -65,11 +80,11 @@ function App(props) {
      * state to the list of companies
      */
     const doSearch = (searchKeywords) => {
-        fetch(`/search.json?search=${searchKeywords}`)
+        fetch(`/search.json?search=${searchKeywords}`)  // calls get_results() function from server.py
             .then((response) => response.json()) // converts the json text our flask route returned into an object
             .then((data) => {
                 if (data !== undefined && data.length) {
-                    setSearchResults({ companies: data })
+                    setShellState({ companies: data })
                 } else {
                     console.log(`No data returned for search [${searchKeywords}]`)
                 }
@@ -85,5 +100,6 @@ function App(props) {
 }
 
 
-
-ReactDOM.render(<App />, document.getElementById('container'));
+// 'container' referenced here is the id of th div container in our
+// jinja template
+ReactDOM.render(<Shell />, document.getElementById('container'));
