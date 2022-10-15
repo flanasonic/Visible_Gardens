@@ -5,10 +5,16 @@
 {% block content %}
 <!-- js can can manipulate DOM elements, we'll use a div here so
 we can have our component render inside it -->
-<div id="container"></div> 
+<div id="container"></div>
 {% endblock %}
 
 {% block js %}
 <!-- this the js that can stick the things in the divs -->
+<script src="https://unpkg.com/deck.gl@latest/dist.min.js" crossorigin></script>
+<!-- optional if mapbox base map is needed -->
+
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css' rel='stylesheet' />
+
 <script src="/static/js/visGardens.jsx" type="text/jsx"></script>
 {% endblock %}

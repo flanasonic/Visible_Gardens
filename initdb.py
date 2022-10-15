@@ -74,7 +74,8 @@ def find_first_matching(join_column_value: str, # column value to look for
                         df_to_search: pd.DataFrame, # daframe to look in
                         join_column_name: str, # column name to look in
                         columns: List[str], # cols to use when creating a result
-                        _class: db.Model # class type of object to create
+                        _class: db.Model, # class type of object to create
+                        query: str=None
                         ):
 
 
@@ -87,6 +88,8 @@ def find_first_matching(join_column_value: str, # column value to look for
     # Use pandas DataFrame.query to find address records in the spreadsheet
     # where the company trade name matches
     df_matching = df_to_search.query(f" {join_column_name} == '{join_column_value}' ")
+    if query: 
+        df_matching = df_matching.query(query)
     if df_matching.shape[0] >= 1:
         # we found at least one matching row - we'll add the first/only one found
         # pandas iloc[] function lets us select rows by index
@@ -166,8 +169,13 @@ db.metadata.create_all(engine)
 # load our CSV files as pandas DataFrames
 df_company_sheet = pd.read_csv('./data/company.csv')
 df_facility_sheet = pd.read_csv('./data/facility.csv')
-df_address_sheet = pd.read_csv('./data/address.csv')
 df_product_sheet = pd.read_csv('./data/product.csv')
+dtypes = {"postal" : "object"}
+df_address_sheet = pd.read_csv('./data/address.csv', dtype=dtypes)
+# dtypes = {"latitude" : "float64", "longitude" : "float64"}
+df_locations_sheet = pd.read_csv('./data/locations.csv', names=["nickname", "latitude", "longitude"])
+df_address_sheet = df_address_sheet.merge(df_locations_sheet, on="nickname", how="left")
+
 
 
 #####################################################################
@@ -237,9 +245,13 @@ with Session(engine) as session:
         # we'll use the value of any key in the kwargs that matches a 
         # Company atttribute as the value of that attribute
         new_company = Company(**company_fields) #  unpacks company_fields dict
-        # print("_____________________")
-        # print(new_company)
-        # print("_____________________")
+     
+        new_company.address = find_first_matching(new_company.trade_name,
+                                                 df_address_sheet,
+                                                 'company_trade_name',
+                                                 address_fields,
+                                                 Address,
+                                                 "make_default==True")
 
         # use function 'find_all_matching' (line 121) to populate the company
         # object with products 
@@ -248,9 +260,6 @@ with Session(engine) as session:
                                                 'company_trade_name', # col to look in
                                                 product_fields, # columns to take for result
                                                 Product) # create a Product object
-        # print("_____________________")
-        # print(new_company.products)
-        # print("_____________________")
 
  
         # now populate the company object with facilities 
@@ -260,6 +269,8 @@ with Session(engine) as session:
                                                 facility_fields, # columns to take for result
                                                 Facility) # create a Facility object
 
+        
+
         # now populate each of the company's facilities with an address
         for facility in new_company.facilities:
             facility.address = find_first_matching(facility.nickname, # value to search for
@@ -267,15 +278,7 @@ with Session(engine) as session:
                                                 'nickname', # col name to look in
                                                 address_fields, #  cols to take for result
                                                 Address) # object type to create
-            # print("_____________________")
-            # print(new_company.trade_name)
-            # print(facility.address)
-            # print("_____________________")
-
-        # now add new_company to the session
-        # print("  ---------------------------")
-        # print(new_company)
-        # print("  ---------------------------")
+ 
         session.add(new_company)
 
 #####################################################################

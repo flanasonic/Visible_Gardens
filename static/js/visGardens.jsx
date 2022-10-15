@@ -1,10 +1,12 @@
+const { MapboxOverlay } = deck;
 
-// components on this page ordered from smallest/finest to largest
 
+// Components on this page ordered from smallest/finest to largest
 function SearchBox(props) {
     return (
+        <div id="searchbox" className="row">
         <form>
-            <label htmlFor="search-terms">search by product, company, or keywords</label>
+            <label htmlFor="search-terms">search products</label>
             <input type="text" name="search" id="search-terms" />
             <button onClick={(event) => {
                 event.preventDefault();
@@ -12,67 +14,69 @@ function SearchBox(props) {
                 props.clickHandler(searchBoxContents)
             }}>Search</button>
         </form>
+        </div>
     );
 }
 
-
-function TableRow(props) {
-    return (
-        <tr>
-            <td>{props.trade_name}</td>
-            <td>{props.country}</td>
-        </tr>
-    );
-}
-
-
-
-function CompanyCardContainer(props) {
-    return(
-
-    )
-    
-}
-
-// components take props
-function CompanyTable(props) {
-    const rows = [];
-
-    /* Make some TableRows to put in our table*/
-    // ... is the spread operator, it unpacks what's inside the company
-    // object
-    if (props.data !== undefined && props.data.length) {
-        for (let company of props.data) {
-            rows.push(<TableRow key={company.id} {...company} />) 
-        }
-        /* Return a html table with  our rows in the middle */
-        return (
-            <table>
-                <thead>
-                    <tr>
-                        <td>trade_name</td>
-                        <td>country</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    {rows}
-                </tbody>
-            </table>
-        );
-    } else {
-        // props.data is empty - no data provided to the component
-        return(<div></div>)
+function FacilityCard(props) {
+    const facilityDivs = []
+    for (let fac of res.facilities) {
+        facilityDivs.push(
+            <div key={fac.id} onClick={() => updateMap(fac.address.latitude, fac.address.longitude)}>
+                <p>Facility: {fac.nickname} {fac.address.latitude} {fac.address.longitude}</p>
+            </div>
+        )
     }
+}
+
+
+
+function AddressTemplate(props) {
+    return (<div key={props.id}>
+        <p>Company address:<br></br> 
+        {props.address_1} {props.address_2} {props.suite}<br></br> 
+        {props.city}, {props.state}, {props.postal}, {props.country}</p>
+    </div>)
+}
+
+/**
+ * Expects a props object with a searchResults
+ * prop that has a list of all our db.model
+ * objects 
+ * 
+ * @param {*} searchResults 
+ * @returns 
+ */
+function SearchResultsContainer(props) {
+    const productDivs = []
+    for (let res of props.searchResults) {
+        productDivs.push(
+            <div key={res.product.id}
+                onClick={() => updateMap(res.company.address.latitude, res.company.address.longitude)}>
+                <h2>{res.company.trade_name}</h2>
+                <p>Product match: {res.product.name}</p>
+                <p>Description: {res.product.description}</p>
+                <AddressTemplate {...res.company.address}/> 
+              
+            </div>
+        )
+        console.log(props.searchResults)
+    }
+    return (<div>{productDivs}</div>
+    )
 
 }
 
 
-/* This is a component to contain all the Components we want on our page */
+
+
+// Our Shell component is the "vessel" for all of the other Components we want
+// on our page
 // React.useState returns a tuple of some stuff - our state object {companies: []}
-// and setShellState -- changes the value of searchResults and lets component that
-// gets searchResults as its props know that it's changed
+// and setShellState -- changes the value of searchResults and lets the component 
+// that takes searchResults as its props know that it's changed
 function Shell(props) {
-    const [searchResults, setShellState] = React.useState({ companies: [] })
+    const [shellState, setShellState] = React.useState({ searchResults: [] })
 
     /**
      * Function that makes a fetch call to our /search.json route
@@ -84,7 +88,7 @@ function Shell(props) {
             .then((response) => response.json()) // converts the json text our flask route returned into an object
             .then((data) => {
                 if (data !== undefined && data.length) {
-                    setShellState({ companies: data })
+                    setShellState({ searchResults: data })
                 } else {
                     console.log(`No data returned for search [${searchKeywords}]`)
                 }
@@ -93,13 +97,49 @@ function Shell(props) {
 
     return (
         <div id='app'>
-            <SearchBox clickHandler={doSearch} />
-            <CompanyTable data={searchResults.companies} />
+            <div id="wrapper">
+                <div id="navbar">
+                    <SearchBox clickHandler={doSearch} />
+                </div>
+
+                <div id="search-results">
+                    <SearchResultsContainer searchResults={shellState.searchResults} />
+                </div>
+                <div id="map-container">
+
+                </div>
+            </div>
         </div>
     );
 }
 
-
-// 'container' referenced here is the id of th div container in our
+// the 'container' referenced here is the id of the div container in our
 // jinja template
 ReactDOM.render(<Shell />, document.getElementById('container'));
+
+mapboxgl.accessToken = 'pk.eyJ1IjoicHBhcnNvbnMiLCJhIjoiY2w4ejd5OTJwMDBqOTNubDE3ODh6emRvMiJ9.xQtkEA_3eGRcKssdvQ6zOw'
+
+const map = new mapboxgl.Map({
+
+    style: 'mapbox://styles/mapbox/streets-v11', // style URL
+    center: [-74.5, 40], // starting position [lng, lat]
+    zoom: 9, // starting zoom
+    projection: 'globe', // display the map as a 3D globe,
+    container: 'map-container',
+    followUserLocation: false,
+    mapboxApiAccessToken: 'pk.eyJ1IjoicHBhcnNvbnMiLCJhIjoiY2w4ejd5OTJwMDBqOTNubDE3ODh6emRvMiJ9.xQtkEA_3eGRcKssdvQ6zOw',
+    layers: [
+    ]
+});
+
+map.on('load', () => { map.resize(); });
+map.on('style.load', () => {
+    map.setFog({}); // Set the default atmosphere style
+    map.invalidateSize();
+    map.resize();
+});
+
+function updateMap(latitude, longitude) {
+    //alert(`Flying to coordinates ${latitude} ${longitude}`)
+    map.flyTo({ center: [longitude, latitude], zoom: 9 })
+}
