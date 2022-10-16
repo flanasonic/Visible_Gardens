@@ -1,22 +1,43 @@
 const { MapboxOverlay } = deck;
 
 
+// Create a nav bar
+function NavBar(props) {
+    return (<div className="navbar-items">
+        <span>Products</span>
+        <span>Companies</span>
+        <span>Farms</span>
+        <span>Data Maps</span>
+        <span>News</span>
+    </div>)
+
+}
+
 // Components on this page ordered from smallest/finest to largest
 function SearchBox(props) {
     return (
-        <div id="searchbox" className="row">
-        <form>
-            <label htmlFor="search-terms">search products</label>
-            <input type="text" name="search" id="search-terms" />
-            <button onClick={(event) => {
-                event.preventDefault();
-                let searchBoxContents = document.getElementById('search-terms').value
-                props.clickHandler(searchBoxContents)
-            }}>Search</button>
-        </form>
+        <div className="searchbox-outline">
+            <form>
+                <input
+                    id="search-terms"
+                    name="search"
+                    type="search"
+                    autoComplete="off"
+                    placeholder="Search..."
+                />
+                <button
+                    onClick={(event) => {
+                        event.preventDefault();
+                        let searchBoxContents = document.getElementById('search-terms').value
+                        props.clickHandler(searchBoxContents)
+                    }}
+                    className="search"
+                ></button>
+            </form>
         </div>
     );
 }
+
 
 function FacilityCard(props) {
     const facilityDivs = []
@@ -33,9 +54,9 @@ function FacilityCard(props) {
 
 function AddressTemplate(props) {
     return (<div key={props.id}>
-        <p>Company address:<br></br> 
-        {props.address_1} {props.address_2} {props.suite}<br></br> 
-        {props.city}, {props.state}, {props.postal}, {props.country}</p>
+        <p>Company address:<br></br>
+            {props.address_1} {props.address_2} {props.suite}<br></br>
+            {props.city}, {props.state}, {props.postal}, {props.country}</p>
     </div>)
 }
 
@@ -49,25 +70,33 @@ function AddressTemplate(props) {
  */
 function SearchResultsContainer(props) {
     const productDivs = []
+    const coords = []
     for (let res of props.searchResults) {
         productDivs.push(
             <div key={res.product.id}
-                onClick={() => updateMap(res.company.address.latitude, res.company.address.longitude)}>
-                <h2>{res.company.trade_name}</h2>
-                <p>Product match: {res.product.name}</p>
-                <p>Description: {res.product.description}</p>
-                <AddressTemplate {...res.company.address}/> 
-              
+                onClick={() => updateMap(res.company.address.latitude, res.company.address.longitude)}
+                className="search-results-item"
+            >
+                <div className="search-res-title">
+                    <h2>{res.company.trade_name}</h2>
+                </div>
+                <div className="search-res-content">
+                    <p>Product match: {res.product.name}</p>
+                    <p>Description: {res.product.description}</p>
+                    <AddressTemplate {...res.company.address} />
+                </div>
             </div>
         )
-        console.log(props.searchResults)
+        let addr = res.company.address
+        coords.push([addr.longitude, addr.latitude])
     }
-    return (<div>{productDivs}</div>
+    if (coords.length > 0) {
+        setMapIcons(coords)
+        updateMap(coords[0][1], coords[0][0])
+    }
+    return (<div className="search-results-container">{productDivs}</div>
     )
-
 }
-
-
 
 
 // Our Shell component is the "vessel" for all of the other Components we want
@@ -99,6 +128,7 @@ function Shell(props) {
         <div id='app'>
             <div id="wrapper">
                 <div id="navbar">
+                    <NavBar />
                     <SearchBox clickHandler={doSearch} />
                 </div>
 
@@ -120,10 +150,9 @@ ReactDOM.render(<Shell />, document.getElementById('container'));
 mapboxgl.accessToken = 'pk.eyJ1IjoicHBhcnNvbnMiLCJhIjoiY2w4ejd5OTJwMDBqOTNubDE3ODh6emRvMiJ9.xQtkEA_3eGRcKssdvQ6zOw'
 
 const map = new mapboxgl.Map({
-
     style: 'mapbox://styles/mapbox/streets-v11', // style URL
-    center: [-74.5, 40], // starting position [lng, lat]
-    zoom: 9, // starting zoom
+    center: [-73.98102176296132, 40.67115972631919], // starting position [lng, lat]
+    zoom: 12, // starting zoom
     projection: 'globe', // display the map as a 3D globe,
     container: 'map-container',
     followUserLocation: false,
@@ -135,11 +164,60 @@ const map = new mapboxgl.Map({
 map.on('load', () => { map.resize(); });
 map.on('style.load', () => {
     map.setFog({}); // Set the default atmosphere style
-    map.invalidateSize();
+    // map.invalidateSize();
     map.resize();
+
+
+    map.loadImage('/static/images/plant_icon.png', (error, image) => {
+        if (error) throw error;
+        map.addImage('plant_icon', image);
+    })
 });
 
 function updateMap(latitude, longitude) {
-    //alert(`Flying to coordinates ${latitude} ${longitude}`)
     map.flyTo({ center: [longitude, latitude], zoom: 9 })
+}
+
+function setMapIcons(coords) {
+    if (!map) {
+        console.log("map not loaded yet");
+        return;
+    }
+
+    let farmMapSource = map.getSource('farms')
+
+    if (farmMapSource) {
+        map.removeLayer('farms').removeSource('farms')
+    }
+
+    let features = []
+
+    for (let coord of coords) {
+        features.push({
+            'type': 'Feature',
+            'properties': {},
+            'geometry': {
+                'type': 'Point',
+                'coordinates': [coord[0], coord[1]]
+            }
+        })
+    }
+
+    map.addSource('farms', {
+        'type': 'geojson',
+        'data': {
+            'type': 'FeatureCollection',
+            'features': features
+        }
+    })
+
+    map.addLayer({
+        'id': 'farms',
+        'type': 'symbol',
+        'source': 'farms', // reference the data source
+        'layout': {
+            'icon-image': 'plant_icon', // reference the image
+            'icon-size': 0.2
+        }
+    })
 }

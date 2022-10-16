@@ -1,21 +1,33 @@
 :root {
     font-size: 12px;
-    font-family: sans-serif;
+    font-family: 'Inter', sans-serif;
+    border: 0px;
+    margin: 0;
+    padding: 0;
+    --dark-green: #034732;
+    --light-green: #008148;
+    --acid-green: #C6C013;
+    --tangerine: #EF8A17;
+    --red: #EF2917;
 }
 
+body {
+    margin: 0;   
+}
+
+
 #searchbox {
-    font-family: "arial";
-    font-size: 24px;
-    background-color: ;
     padding-left: .5em;
     padding-right: .5em;
     padding-top: .5em;
     padding-bottom: .5em;
+    border: 7px dashed red;
 }
 
-table {
+/* table {
     padding: 3px;
     border-spacing: .25em;
+    border: 3px solid rgb(224, 13, 224);
 }
 
 
@@ -25,42 +37,152 @@ td {
     padding-right: .5em;
     padding-top: .25em;
     padding-bottom: .25em;
+    border: 3px solid rgb(102, 128, 0);
 }
 
 thead td {
     background-color: rgb(3, 67, 17);
-    color: rgb(215, 236, 219)
+    color: rgb(215, 236, 219);
+    border: 3px solid pink;
 }
 
 td {
     background-color: rgb(173, 227, 185);
 }
-
+ */
 
 #wrapper {
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 2fr 3fr;
     gap: 10px;
     grid-auto-rows: minmax(3rem, auto);
 }
 
 #navbar {
+    z-index: 10;
     grid-column-start: 1;
-    grid-column-end: 2;
+    grid-column-end: 3;
     grid-row: 1;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: var(--dark-green);
+    color: white;
 }
 
-#search-results {
-    grid-column: 1;
+.navbar-items {
+    margin-left: 20px;
+    font-weight: 200;
+    display: flex;
+    column-gap: 40px;
+}
+
+#searchbar {
+    grid-column-start: 1;
+    grid-column-end: 3;
     grid-row: 2;
+    width: 100%;
+}
+
+.searchbox-outline {
+    display: inline-block;
+    border: 1px solid rgb(145, 145, 145);
+    border-radius: 5px;
+    text-align: center;
+    margin-right: 40px;
+    margin-left: auto;
+}
+
+input[type="search"] {
+    border: none;
+    outline: none;
+    background: transparent;
+    margin: 0;
+    padding: 3px 8px 3px 8px;
+    font-size: 14px;
+    color: inherit;
+    border-radius: inherit;
+  }
+  
+  input[type="search"]::placeholder {
+    font-family: 'Inter', sans-serif;
+    font-weight: 200;
+    color: #bbb;
+  }
+
+
+button.search {
+    text-indent: -999px;
+    overflow: hidden;
+    width: 40px;
+    height: 16px;
+    margin: 0;
+    margin-bottom: 4px;
+    vertical-align: middle;
+    border: none;
+    border-radius: inherit;
+    background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' class='bi bi-search' viewBox='0 0 16 16'%3E%3Cpath stroke='white' d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'%3E%3C/path%3E%3C/svg%3E") no-repeat center;
+    cursor: pointer;
+    opacity: 0.5;
+  }
+  
+  button.search:hover {
+    opacity: 1;
+  }
+
+#search-results {
+    z-index: 5;
+    grid-column: 1;
+    grid-row: 3;
     max-height: 80vh;
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    border: 0;
+    margin-left: 30px;
+}
+
+#search-results::-webkit-scrollbar {
+    display: none;
+}
+.search-results-container {
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}   
+
+.search-results-item {
+    z-index: 10;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px --light-green solid;
+    border-radius: 20px;
+    padding: 0;
+    width: 80%;
+}
+
+.search-res-title {
+    border-top-style: solid;
+    border-bottom-style: none;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    overflow: hidden;
+    padding: 2px 8px;
+    background-color: var(--dark-green);
+    color: white;    
+}
+
+.search-res-content{
+    padding: 8px 12px;
+
 }
 
 #map-container {
-    grid-column: 2;
-    grid-row: 2;
-    height: 80vh;
+    z-index: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
 }
 
 #map {

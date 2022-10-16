@@ -1,0 +1,162 @@
+{
+    "product": {
+        "id": 1,
+        "company_id": 1,
+        "name": "baby spicy mix",
+        "category": "baby greens",
+        "user": "consumer",
+        "description": "bold + peppery medley\nOur baby spicy mix is a bold + peppery medley of spicy mustard greens, peppery arugula and juicy bok choy.",
+        "key_words": [ "baby greens", "salad mixes", "salad greens" ],
+        "distribution": null
+    },
+    "company": {
+        "id": 1,
+        "trade_name": "AeroFarms",
+        "legal_name": "Just Greens, LLC",
+        "website": "https: //www.aerofarms.com/",
+        "country": "US",
+        "parent_id": null,
+        "year_founded": 2004,
+        "statement": "We are on a bold mission to grow the best plants possible for the betterment of humanity.\nSince 2004, we have been transforming agriculture with people and planet in mind. As a Certified B Corporation, we use the latest breakthroughs in indoor vertical farming, artificial intelligence and plant biology to fix our broken food system and improve the way fresh produce is grown and distributed locally and globally. We have built a proprietary agriculture platform to grow a wide array of products, delivering superior flavor, better quality and improved nutrition with the most sophisticated levels of traceability and food safety in our industry.",
+        "total_employees": 1,
+        "legal_form": null,
+        "for_profit": True,
+        "ownership": "private",
+        "business_focus": "specialty crop grower"
+    },
+    "facilities": [
+        {
+            "id": 1,
+            "company_id": 1,
+            "address_id": 1,
+            "nickname": "AeroFarms Abu Dhabi, UAE",
+            "type": "farm",
+            "year_opened": null,
+            "facility_employees": null,
+            "address": {
+                "id": 1,
+                "address_1": null,
+                "address_2": null,
+                "suite": null,
+                "city": "Abu Dhabi",
+                "state": null,
+                "postal": "11111.0",
+                "country": "UAE"
+            }
+        },
+        {
+            "id": 2,
+            "company_id": 1,
+            "address_id": 2,
+            "nickname": "AeroFarms Danville, VA",
+            "type": "farm",
+            "year_opened": null,
+            "facility_employees": null,
+            "address": {
+                "id": 2,
+                "address_1": null,
+                "address_2": null,
+                "suite": null,
+                "city": "Danville",
+                "state": "VA",
+                "postal": "11111.0",
+                "country": "USA"
+            }
+        },
+        {
+            "id": 3,
+            "company_id": 1,
+            "address_id": 3,
+            "nickname": "AeroFarms HQ Farm - Newark",
+            "type": "farm",
+            "year_opened": 2016,
+            "facility_employees": null,
+            "address": {
+                "id": 3,
+                "address_1": "212 Rome Street",
+                "address_2": null,
+                "suite": null,
+                "city": "Newark",
+                "state": "NJ",
+                "postal": "7105.0",
+                "country": "USA"
+            }
+        },
+        {
+            "id": 4,
+            "company_id": 1,
+            "address_id": 4,
+            "nickname": "AeroFarms HQ Office - Newark",
+            "type": "office",
+            "year_opened": 2016,
+            "facility_employees": null,
+            "address": {
+                "id": 4,
+                "address_1": "212 Rome Street",
+                "address_2": null,
+                "suite": null,
+                "city": "Newark",
+                "state": "NJ",
+                "postal": "7105.0",
+                "country": "USA"
+            }
+        },
+        {
+            "id": 5,
+            "company_id": 1,
+            "address_id": 5,
+            "nickname": "Midwest Farm",
+            "type": "farm",
+            "year_opened": null,
+            "facility_employees": null,
+            "address": {
+                "id": 5,
+                "address_1": null,
+                "address_2": null,
+                "suite": null,
+                "city": "St. Louis",
+                "state": "MO",
+                "postal": "11111.0",
+                "country": "USA"
+            }
+        },
+        {
+            "id": 6,
+            "company_id": 1,
+            "address_id": 6,
+            "nickname": "Newark Farm",
+            "type": "farm",
+            "year_opened": 2015,
+            "facility_employees": null,
+            "address": {
+                "id": 6,
+                "address_1": "400 Ferry Street",
+                "address_2": null,
+                "suite": null,
+                "city": "Newark",
+                "state": "NJ",
+                "postal": "7105.0",
+                "country": "USA"
+            }
+        },
+        {
+            "id": 7,
+            "company_id": 1,
+            "address_id": 7,
+            "nickname": "Research and Development Farm - Newark",
+            "type": "farm",
+            "year_opened": 2013,
+            "facility_employees": null,
+            "address": {
+                "id": 7,
+                "address_1": "89 Market Street",
+                "address_2": null,
+                "suite": null,
+                "city": "Newark",
+                "state": "NJ",
+                "postal": "11111.0",
+                "country": "USA"
+            }
+        }
+    ]
+}
