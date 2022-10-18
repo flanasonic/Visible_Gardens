@@ -13,7 +13,7 @@ app = Flask(__name__)
 # tell our app where to find the db
 app.config["SQLALCHEMY_DATABASE_URI"] = DB_URI
 # print our SQL commands to Python terminal, shut off if needed
-app.config["SQLALCHEMY_ECHO"] = False
+app.config["SQLALCHEMY_ECHO"] = True
 # include this line and set to False, otherwise it will waste memory
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 

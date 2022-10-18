@@ -168,7 +168,7 @@ map.on('style.load', () => {
     map.resize();
 
 
-    map.loadImage('/static/images/plant_icon.png', (error, image) => {
+    map.loadImage('/static/images/tomato.png', (error, image) => {
         if (error) throw error;
         map.addImage('plant_icon', image);
     })
@@ -217,7 +217,7 @@ function setMapIcons(coords) {
         'source': 'farms', // reference the data source
         'layout': {
             'icon-image': 'plant_icon', // reference the image
-            'icon-size': 0.2
+            'icon-size': 0.05
         }
     })
 }

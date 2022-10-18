@@ -33,9 +33,12 @@ def search_product(search_terms: str):
     for word in word_list:
         # query the name column of our Product table to see
         # if it contains this word
-        products = Product.query.filter(Product.name
-                                        .contains(literal(word)
-                                        )).all()
+        # products = Product.query.filter(Product.name
+        #                                 .contains(literal(word)
+        #                                 )).all()
+        products = Product.query.filter(Product.name.ilike(f"%{word}%")).all()
+        
+
 
         # hopefully we got some products that matched our search word
         # let's loop over the results for this word and add some data 

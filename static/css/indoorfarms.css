@@ -55,7 +55,7 @@ td {
     display: grid;
     grid-template-columns: 2fr 3fr;
     gap: 10px;
-    grid-auto-rows: minmax(3rem, auto);
+    grid-auto-rows: minmax(5rem, auto);
 }
 
 #navbar {
@@ -71,8 +71,9 @@ td {
 }
 
 .navbar-items {
+    font-size: 16px;
     margin-left: 20px;
-    font-weight: 200;
+    font-weight: 250;
     display: flex;
     column-gap: 40px;
 }
@@ -98,8 +99,8 @@ input[type="search"] {
     outline: none;
     background: transparent;
     margin: 0;
-    padding: 3px 8px 3px 8px;
-    font-size: 14px;
+    padding: 8px 8px 8px 8px;
+    font-size: 16px;
     color: inherit;
     border-radius: inherit;
   }
