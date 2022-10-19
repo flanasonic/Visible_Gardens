@@ -192,3 +192,97 @@ button.search {
     bottom: 0;
     width: 100%;
 }
+
+.comp-info-form-title {
+    font-size: 1.5rem;
+    font-weight: 300;
+    padding-bottom: 1rem;
+}
+
+.contact-form {
+    font-size: 1.5rem;
+    z-index: 10;
+    position: absolute;
+    top: 10rem;
+    left: 40vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* padding: 4px 8px 4px 8px; */
+}
+
+.comp-info-container {
+    padding: 1rem 2rem 1rem 2rem  ;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    width: 95%;
+    max-width: 300px;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 0.5rem;
+    box-shadow: 0 0 8px 0 rgb(0 0 0 / 8%), 0 0 15px 0 rgb(0 0 0 / 2%), 0 0 20px 4px rgb(0 0 0 / 6%);
+  }
+
+.input-container {
+    background-color: #f5f5f5;
+    position: relative;
+    border-radius: 4px 4px 0 0;
+    height: 3rem;
+    transition: background-color 500ms;
+}
+
+.comp-info-label {
+    display: block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 16px;
+    color: rgba(0, 0, 0, 0.8);
+    transform-origin: left top;
+    user-select: none;
+    transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1),color 150ms cubic-bezier(0.4, 0, 0.2, 1), top 500ms;
+  }
+
+.comp-info-text-input {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    background: transparent;
+    caret-color: #6200ee;
+    border: 1px solid transparent;
+    border-bottom-color: rgba(0, 0, 0, 0.42);
+    color: rgba(0, 0, 0, 0.87);
+    transition: border 500ms;
+    padding: 20px 16px 6px;
+    font-size: 1rem;
+}
+
+input:focus + label {
+    transform: translateY(-100%) scale(0.75);
+    color: #6200ee;
+  }
+
+  input:focus {
+    outline: none;
+    border-bottom-width: 2px;
+    border-bottom-color: #6200ee;
+  }
+   
+  input:focus + label {
+    color: #6200ee;
+  }
+   
+  input:focus + label, input.is-valid + label {
+    transform: translateY(-100%) scale(0.75);
+  }
+
+.comp-info-submit-button {
+    background-color: var(--light-green);
+    color: white;
+    font-weight: 300;
+    border-radius: 4px;
+    border-color: transparent;
+    padding: .5rem 1rem;
+}

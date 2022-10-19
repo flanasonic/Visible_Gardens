@@ -3,12 +3,16 @@ const { MapboxOverlay } = deck;
 
 // Create a nav bar
 function NavBar(props) {
+
     return (<div className="navbar-items">
         <span>Products</span>
         <span>Companies</span>
         <span>Farms</span>
         <span>Data Maps</span>
         <span>News</span>
+        <span onClick={props.contactMenuListener}>
+            Contact
+        </span>
     </div>)
 
 }
@@ -54,7 +58,7 @@ function FacilityCard(props) {
 
 function AddressTemplate(props) {
     return (<div key={props.id}>
-        <p>Company address:<br></br>
+        <p>Address:<br></br>
             {props.address_1} {props.address_2} {props.suite}<br></br>
             {props.city}, {props.state}, {props.postal}, {props.country}</p>
     </div>)
@@ -106,6 +110,7 @@ function SearchResultsContainer(props) {
 // that takes searchResults as its props know that it's changed
 function Shell(props) {
     const [shellState, setShellState] = React.useState({ searchResults: [] })
+    const [contactFormState, setContactFormState] = React.useState({contactFormVisible: false})
 
     /**
      * Function that makes a fetch call to our /search.json route
@@ -124,11 +129,15 @@ function Shell(props) {
             });
     }
 
+    const toggleContactFormVis = () => {
+        setContactFormState({contactFormVisible: !contactFormState.contactFormVisible})
+    }
+
     return (
         <div id='app'>
             <div id="wrapper">
                 <div id="navbar">
-                    <NavBar />
+                    <NavBar contactMenuListener={toggleContactFormVis} />
                     <SearchBox clickHandler={doSearch} />
                 </div>
 
@@ -138,14 +147,82 @@ function Shell(props) {
                 <div id="map-container">
 
                 </div>
+                    {contactFormState.contactFormVisible ? <CompanyInfoForm doneHandler={toggleContactFormVis} /> : null}
             </div>
         </div>
     );
 }
 
+
+function CompanyInfoForm(props) {
+
+    const companyFields = [
+        ["Company Name", "company_name"],
+        ["Type of Business", "business_type"],
+        ["Website URL","website_url"],
+        ["First Name", "first_name"],
+        ["Last Name", "last_name"],
+        ["email", "email"],
+        ["phone number","phone"]
+    ]
+
+    let companyFieldInputs = []
+    for (const [index, field] of companyFields.entries()) {
+        companyFieldInputs.push(
+            <div className="input-container" key={index} >
+                <input className="comp-info-text-input" 
+                name={field[1]} 
+                onBlur={(event) => {
+                    if (event.target.value) {
+                      event.target.classList.add("is-valid");
+                    } else {
+                      event.target.classList.remove("is-valid");
+                    }
+                  }
+                }
+                ></input>
+                <label htmlFor={field[1]} 
+                    className="comp-info-label" 
+                    onClick={ () => document.getElementsByName(field[1])[0].focus() }
+                >{field[0]}</label>
+            </div>
+        )
+    }
+    return(
+        <div className="contact-form" >
+                <form>
+                    <div className="comp-info-container" >
+                        <span className="comp-info-form-title">Contact Us:</span>
+                            {companyFieldInputs}
+                            <button 
+                                className="comp-info-submit-button"
+                                onClick={(e) => {
+                                        e.preventDefault();
+                                        props.doneHandler();
+                                    }
+                                }
+                                >Done</button>
+                    </div>
+                </form>
+        </div>
+    )
+}
+
+
+
+
 // the 'container' referenced here is the id of the div container in our
 // jinja template
 ReactDOM.render(<Shell />, document.getElementById('container'));
+
+
+
+
+
+/***************************************************************
+ * MAP Code
+ */
+
 
 mapboxgl.accessToken = 'pk.eyJ1IjoicHBhcnNvbnMiLCJhIjoiY2w4ejd5OTJwMDBqOTNubDE3ODh6emRvMiJ9.xQtkEA_3eGRcKssdvQ6zOw'
 

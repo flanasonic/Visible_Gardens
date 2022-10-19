@@ -3,4 +3,5 @@ __pycache__/
 test_queries.sql
 env/**
 experiments/
-
+data/.ipynb_checkpoints/
+data/prepfiles.ipynb
