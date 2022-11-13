@@ -2,8 +2,11 @@
 initdb.py 
 **********
 
-Start here. This file contains contains some helpful functions to get our
-database up and running with current data.
+Start here. 
+
+
+
+Some helpful functions created to get the database up and running with current data.
 
 1. arg_parser 
 This uses the argparse module's ArugmentParser class to enable us to add 
